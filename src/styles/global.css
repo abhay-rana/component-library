@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* always set this like this html and body element */
+
+html,body {
+	background-color: #f2f7f9;
+	font-family: "Poppins", sans-serif;
+	min-height: 100vh;
+	width: 100%;
+}
+
+#root {
+	height: 100vh; 
+	width: 100%;
+}
+
+/* min-height is not inherited by the child  so we have replace the min-height by the height property */
