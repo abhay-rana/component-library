@@ -8,183 +8,203 @@ import { ReactComponent as Cross } from "assets/svg/cross.svg";
 import { ReactComponent as Download } from "assets/svg/download.svg";
 import { ReactComponent as Search } from "assets/svg/search.svg";
 import FloatingLabel from "components/form/floating-label";
+import InputPlain, { InputPlainLarge } from "components/form/wind-ui";
+import MyInput from "components/form/my-input";
 
 const CustomInput = () => {
-	const [state, setState] = useState({});
 	const [username, setUsername] = useState("");
-	const [error, setError] = useState("");
+	const [error, setError] = useState("This is error text");
 
-	const onChangeInput = (key, value) => {
-		setState({ ...state, [key]: value });
-	};
-
-	const setErr = () => {
-		if (error) setError("");
-		else setError("This is Error");
-	};
-
-	const fireError = () => {
-		console.log("hello abhay");
-	};
-
-	const runThis = () => console.log("run this");
-
-	const parentFires = () => console.log("parent fires");
-
-	const garendParent = () => console.log("grand parent fires");
 	return (
 		<>
 			<div className="flex flex-col">
-				<div className="w-[250px]">
-					<Input
+				<div className="m-4 w-[300px] ">
+					<MyInput
 						name="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						type="text"
-						placeholder={"Enter Username"}
+						placeholder="text"
 						autoComplete="off"
-						floatingLabel
-						topHeight={30}
-						required
-						label={"Username"}
-						suffix={
-							<Input.Suffix
-								onClick={runThis}
-								className="absolute top-2.5 right-0 px-4 "
-							>
-								<p>Image</p>
-							</Input.Suffix>
-						}
+						label="Username"
+						base
+						description="enter username"
 						prefix={
-							<Input.Prefix
-								onClick={runThis}
-								className="absolute  left-0 top-2.5 px-1"
-							>
-								<Download
-									className="h-6 w-6"
-									fill="red"
-								/>
-							</Input.Prefix>
+							<Download
+								className="h-4 w-6"
+								fill="red"
+							/>
+						}
+						iconSuffix={
+							<Cross
+								className="h-4 w-6"
+								fill="black"
+							/>
 						}
 					/>
 				</div>
-				<div className="m-4 w-[250px]">
-					<AnupInput
-						name="anup"
+
+				<div className="m-4 w-[300px]">
+					<MyInput
+						name="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
-						type="text"
-						placeholder={"Enter Username"}
+						type="password"
+						placeholder="text"
 						autoComplete="off"
-						disabled
-						floatingLabel
-						topHeight={30}
-						required
-						label="username"
-						note="note"
+						label="Username"
+						description="enter password"
+						large
+						prefix={
+							<Download
+								className="h-4 w-6"
+								fill="red"
+							/>
+						}
+						iconSuffix={
+							<Cross
+								className="h-4 w-6"
+								fill="black"
+							/>
+						}
 					/>
 				</div>
-				<div className="m-4 w-[250px]">
-					<AnupInput
-						name="anup"
+				<div className="m-4 w-[300px]">
+					<MyInput
+						name="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						type="text"
-						placeholder={"Enter Username"}
+						placeholder="text"
 						autoComplete="off"
-						floatingLabel
-						disabled
-						topHeight={30}
-						required
-						error="Email is not correct"
+						className="pr-16"
+						label="Username"
+						description="enter password"
+						large
+						prefix={
+							<Download
+								className="h-4 w-6"
+								fill="red"
+							/>
+						}
+						suffix={
+							<div className=" flex flex-1 border border-black">
+								<div className="absolute -bottom-0.5 right-7   text-lg">Ton</div>
+								<div className="absolute bottom-1 -right-0">
+									<Cross
+										className="h-4 w-6"
+										fill="black"
+									/>
+								</div>
+							</div>
+						}
+					/>
+				</div>
+				<div className="m-4 mt-6 w-[300px]">
+					<MyInput
+						name="username"
+						value={username}
+						error={error}
+						onChange={(e) => setUsername(e.target.value)}
+						type="text"
+						placeholder="text"
+						autoComplete="off"
+						className="pr-16"
+						label="Username"
+						onFocus={() => setError("")}
+						description="enter password"
+						large
+						prefix={
+							<Download
+								className="h-4 w-6"
+								fill="red"
+							/>
+						}
+						suffix={
+							<div className=" flex flex-1 border border-black">
+								<div className="absolute -bottom-0.5 right-7   text-lg">Ton</div>
+								<div className="absolute bottom-1 -right-0">
+									<Cross
+										className="h-4 w-6"
+										fill="black"
+									/>
+								</div>
+							</div>
+						}
+					/>
+				</div>
+				<div className="m-4 mt-6 w-[300px]">
+					<MyInput
+						name="username"
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
+						type="text"
+						error={error}
+						placeholder="text"
+						autoComplete="off"
+						className="pr-16"
+						label="Username"
+						onFocus={() => setError("")}
+						description="enter password"
+						large
+						prefix={
+							<Download
+								className="h-4 w-6"
+								fill="red"
+							/>
+						}
 						stacked
-					/>
-				</div>
-				<div className="m-4 w-[250px]">
-					<AbhayInput
-						labelStyle=""
-						name="new-input"
-						id={"unique"}
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-						type="text"
-						label="Label"
-						placeholder={"Enter Username"}
-						autoComplete="off"
-						floatingLabel
-						note="hello this is note"
-						topHeight={30}
-						required
-						filled
-						stacked
-						iconTrailing={
-							<Cross
-								width={12}
-								height={18}
-							/>
-						}
-						iconLeading={
-							<Search
-								width={12}
-								height={18}
-							/>
+						suffix={
+							<div className=" flex flex-1 border border-black">
+								<div className="absolute -bottom-0.5 right-7   text-lg">Ton</div>
+								<div className="absolute bottom-1 -right-0">
+									<Cross
+										className="h-4 w-6"
+										fill="black"
+									/>
+								</div>
+							</div>
 						}
 					/>
 				</div>
-				<div className="m-4 w-[250px]">
-					<AbhayInput
-						name="new-input"
-						id={"unique"}
+				<div className="m-4 mt-6 w-[300px]">
+					<MyInput
+						name="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						type="text"
-						label="Label"
-						// placeholder={"Enter Username"}
-						autoComplete="off"
-						floatingLabel
-						note="hello this is note"
-						topHeight={30}
+						placeholder="text"
+						className="pr-16"
+						label="Username"
+						onFocus={() => setError("")}
+						description="enter password"
+						large
+						wordCount
 						required
-						// className="px-6"
-						iconTrailing={
-							<Cross
-								width={12}
-								height={18}
-							/>
-						}
-						iconLeading={
-							<Search
-								width={12}
-								height={18}
-							/>
-						}
+						maxLength={8}
 					/>
 				</div>
-				<div className="m-4 w-[250px]">
-					<FloatingLabel
-						name="floating-label"
-						id={"floating"}
+				{/* prefix text */}
+				<div className="m-4 mt-6 w-[300px]">
+					<MyInput
+						name="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						type="text"
-						label="Floating"
-						placeholder={"Enter Username"}
-						autoComplete="off"
-						floatingLabel={"-translate-y-3 -translate-x-3 text-xs bg-[#f2f7f9] pl-2 px-2 text-center text-primary "}
-						topHeight={30}
+						placeholder="text"
+						className="pr-16"
+						label="Username"
+						onFocus={() => setError("")}
+						description="enter password"
+						large
+						wordCount
 						required
-						iconTrailing={
-							<Cross
-								width={12}
-								height={18}
-							/>
+						prefix={
+							<div className="relative -top-2">
+								<p className="text-lg text-slate-700">kg</p>
+							</div>
 						}
-						iconLeading={
-							<Search
-								width={12}
-								height={18}
-							/>
-						}
+						maxLength={8}
 					/>
 				</div>
 			</div>

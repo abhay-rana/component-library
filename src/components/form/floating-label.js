@@ -46,7 +46,7 @@ const FloatingLabel = memo(
 		}
 
 		if (stacked) {
-			extraClass.input += " border-b bg-transparent ";
+			extraClass.input += "border-b bg-transparent ";
 		} else {
 			extraClass.input += " border";
 		}
@@ -59,19 +59,33 @@ const FloatingLabel = memo(
 			extraClass.filled += " bg-[#00000008] hover:bg-[#00000014] focus:bg-[#00000014] rounded-md ";
 		}
 
-		if (!!active.current) {
-			extraClass.floatingLabel = floatingLabel
-				.split(" ")
-				.map((item) => {
-					return (item = ` peer-focus:${item} `);
-				})
-				.join("");
-			console.log(extraClass.floatingLabel);
-			extraClass.floatingLabel += ` transition:all ease-in duration-300 `;
-			extraClass.label += ` absolute peer-placeholder-shown:top-[3px] text-base left-0 peer-placeholder-shown:text-yellow-400 `;
+		// extraClass.floatingLabel += ` peer-focus:-translate-y-3
+		// peer-focus:-translate-x-3
+		// peer-focus:text-xs
+		// peer-focus:bg-[#f2f7f9]
+		// peer-focus:px-2
+		// peer-focus:text-center
+		// peer-focus:pl-2
+		// peer-focus:text-primary
+		// peer-focus:top-0
+		// peer-focus:left-0
+		// transition:all ease-in duration-300
+		// peer-focus:border
+		// peer-focus:border-black `;
+		// extraClass.label += ` absolute text-base left-0 peer-placeholder-shown:text-black top-1 `;
+		// extraClass.is_value_not += `  `;
+		// extraClass.label_floated_default += ` -translate-y-3 -translate-x-3 text-xs bg-[#f2f7f9] pl-2 px-2 text-center top-0 left-0 text-xs `;
+		// extraClass.placeholder_shown += ` peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:text-black peer-placeholder-shown:-left-5 `;
+
+		if (active.current) {
+			//if there is value without focus
+			extraClass.default += ` top-1 left-6 `;
+			extraClass.focus += ` peer-focus:top-0 peer-focus:left-0 peer-focus:text-primary `;
 		} else {
-			extraClass.floatingLabel += ` `;
-			extraClass.label += ` absolute peer-placeholder-shown:top-[3px] peer-placeholder-shown:text-base peer-placeholder-shown:left-0 text-red-400 peer-placeholder-shown:text-blue-400 `;
+			//if there is not a value
+			extraClass.default_noValue += ` top-0 left-0  `;
+			//if there is no value and no focus
+			extraClass.no_val_no_focus += `  `;
 		}
 
 		if (light) {
@@ -101,6 +115,12 @@ const FloatingLabel = memo(
 			input_ref.current = el;
 			if (!!ref) ref.current = el;
 		};
+		const onFocus = () => {
+			default_props.onFocus();
+		};
+		const onBlur = () => {
+			default_props.onBlur();
+		};
 		console.log(extraClass);
 		return (
 			<div className="group">
@@ -110,12 +130,14 @@ const FloatingLabel = memo(
 						className={extraClass.input}
 						ref={hydrateRef}
 						placeholder="abhay"
+						onFocus={onFocus}
+						onBlur={onBlur}
 					/>
 					{children}
 					{label ? (
 						<label
 							htmlFor={default_props.id}
-							className={`text-md block font-normal ${showError ? "text-danger" : ""} group-hover:text-primary ${extraClass.label} ${extraClass.floatingLabel} `}
+							className={`absolute ${extraClass.default} ${extraClass.focus}`}
 						>
 							{label}
 						</label>

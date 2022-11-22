@@ -64,7 +64,7 @@ const AnupInput = memo(
 				{children}
 				<input
 					{...default_props}
-					className={extraClass}
+					className={extraClass.input}
 					ref={ref}
 				/>
 				{error || note ? (
