@@ -26,13 +26,13 @@ const MyInput = memo(
 			style: props.style,
 			step: props.step,
 		};
-		const { label, className, prefix, iconSuffix, large, base = true, description, wordCount, suffix, error, stacked, maxLength, value, required } = props;
+		const { label, className, prefix, suffix, large, base = true, description, wordCount, error, stacked, maxLength, value, required } = props;
 
 		let extra_class = {
 			input: " ",
 			label: " ",
 			prefix: " ",
-			iconSuffix: "z-1 absolute right-1 bottom-3 ",
+			suffix: "z-1 absolute right-0 bottom-0 ",
 		};
 		extra_class.input =
 			"w-full z-0 box-border text-gray-dark focus:border-primary focus:outline-none placeholder-gray-light hover:border-primary outline-none transition-all placeholder-transparent peer relative   border-slate-400 ";
@@ -55,10 +55,10 @@ const MyInput = memo(
 			if (base) extra_class.prefix += `top-3 `;
 			if (large) extra_class.prefix += `!top-4 `;
 		}
-		if (!!iconSuffix) {
+		if (!!suffix) {
 			extra_class.label += ` `;
 			extra_class.input += `pr-9  `;
-			if (large) extra_class.iconSuffix += `bottom-4 `;
+			if (large) extra_class.suffix += ` `;
 		}
 		if (large) {
 			extra_class.input += `h-12 `;
@@ -82,7 +82,7 @@ const MyInput = memo(
 		}
 
 		if (!!className) {
-			extra_class.input += ` ${className}`;
+			extra_class.input += `${className} `;
 		}
 
 		//change the word counter on the every input of the text
@@ -115,26 +115,19 @@ const MyInput = memo(
 							{prefix}
 						</div>
 					) : null}
-					{!!iconSuffix && default_props.type != "password" ? (
+					{!!suffix && default_props.type != "password" ? (
 						<div
 							onClick={inputFocus}
-							className={`${extra_class.iconSuffix}`}
-						>
-							{iconSuffix}
-						</div>
-					) : null}
-					{!!suffix && !iconSuffix ? (
-						<div
-							onClick={inputFocus}
-							className={`${extra_class.iconSuffix}`}
+							className={`${extra_class.suffix}`}
 						>
 							{suffix}
 						</div>
 					) : null}
+
 					{default_props.type == "password" ? (
 						<div
 							onClick={() => setPasswordVisibility(!show_password)}
-							className={`${extra_class.iconSuffix}`}
+							className={`absolute top-3 right-1`}
 						>
 							{show_password ? <Invisible className="h-5 w-7" /> : <Visible className="h-5 w-7" />}
 						</div>
