@@ -62,3 +62,9 @@ so there are 4 ways so to close this modal
 9-> "reveal" for showing the password
 10-> "stacked" for the border bottom
 11-> "filled" for the grey background
+
+<!-- react Normal input  -->
+
+1-> "labelClassName" to style the label
+2-> "error"
+3-> "stacked"

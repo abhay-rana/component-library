@@ -231,7 +231,6 @@ const FloatingLabelTest = () => {
 						onChange={(e) => setUsername(e.target.value)}
 						type="text"
 						placeholder="text"
-						className="pr-[134px]"
 						label="Username"
 						base
 						large

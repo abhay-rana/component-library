@@ -35,7 +35,7 @@ const FloatingInput = memo(
 			suffix: "z-1 absolute right-0 bottom-0 ",
 		};
 		extra_class.input =
-			"w-full z-0 box-border text-gray-dark focus:border-primary focus:outline-none placeholder-gray-light hover:border-primary outline-none transition-all placeholder-transparent peer relative   border-slate-400 ";
+			"w-full z-0 box-border text-gray-dark focus:border-primary focus:outline-none placeholder-gray-light hover:border-primary outline-none transition-all placeholder-transparent peer relative border-slate-400 ";
 
 		const input_ref = useRef();
 		const [show_password, setPasswordVisibility] = useState(default_props.type == "password");
@@ -83,7 +83,7 @@ const FloatingInput = memo(
 
 		if (filled) {
 			extra_class.input += `bg-gray-300 border-0 border-b-2 hover:border-b-primary pt-5 `;
-			extra_class.label += `peer-focus:top-0 bg-transparent `;
+			extra_class.label += `peer-focus:top-0 bg-transparent top-0`;
 		}
 
 		if (!!className) {

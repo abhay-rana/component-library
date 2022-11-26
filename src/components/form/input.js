@@ -1,85 +1,91 @@
-import { forwardRef, memo } from "react";
+import { memo } from "react";
 import PropTypes from "prop-types";
+import { twMerge } from "tailwind-merge";
 
-const Input = memo(
-	forwardRef((props, ref) => {
-		const default_props = {
-			type: props.type,
-			id: props.id,
-			name: props.name,
-			value: props.value,
-			maxLength: props.maxLength,
-			minLength: props.minLength,
-			max: props.max,
-			min: props.min,
-			disabled: props.disabled,
-			autoComplete: props.autoComplete,
-			placeholder: props.placeholder,
-			autoFocus: props.autoFocus,
-			required: props.required,
-			onFocus: props.onFocus,
-			onChange: props.onChange,
-			onKeyPress: props.onKeyPress,
-			style: props.style,
-			step: props.step,
-		};
-		const { className, error, success, small, large, children, label, stacked, controlRef, no_gap, light, note } = { ...props };
+const Input = memo((props) => {
+	const default_props = {
+		type: props.type,
+		id: props.id,
+		name: props.name,
+		value: props.value,
+		maxLength: props.maxLength,
+		minLength: props.minLength,
+		max: props.max,
+		min: props.min,
+		disabled: props.disabled,
+		autoComplete: props.autoComplete,
+		placeholder: props.placeholder,
+		autoFocus: props.autoFocus,
+		required: props.required,
+		onFocus: props.onFocus,
+		onChange: props.onChange,
+		onKeyPress: props.onKeyPress,
+		style: props.style,
+		step: props.step,
+	};
+	const { className, error, success, small, large, children, label, stacked, controlRef, no_gap, light, note, labelClassName } = { ...props };
 
-		let extraClass = "w-full z-0 box-border text-gray-dark focus:border-primary focus:outline-none placeholder-gray-light hover:border-primary";
-		if (small) {
-			extraClass += stacked ? " h-7 text-base" : " h-7 px-2 text-base";
-		} else if (large) {
-			extraClass += stacked ? " h-10" : " h-10 px-2";
-		} else {
-			extraClass += stacked ? " h-8 text-base" : " h-8 px-2 text-base";
-		}
+	let extra_class = {
+		input: "",
+		label: "",
+	};
+	extra_class.input = "w-full z-0 box-border text-gray-dark focus:border-primary focus:outline-none placeholder-gray-light outline-none hover:border-primary border border-slate-400 ";
 
-		if (stacked) {
-			extraClass += " border-b bg-transparent px-0";
-		} else {
-			extraClass += " border";
-		}
+	if (small) {
+		extra_class.input += stacked ? "h-7 text-base " : "h-7 px-2 text-base ";
+	} else if (large) {
+		extra_class.input += stacked ? "h-10 " : "h-10 px-2 ";
+	} else {
+		extra_class.input += stacked ? "h-8 text-base " : "h-8 px-2 text-base ";
+	}
 
-		if (light) {
-			extraClass += " text-white placeholder-gray-md";
-		}
+	if (stacked) {
+		extra_class.input += "border-0 border-b-2 bg-transparent px-0 hover:border-b-2 ";
+	} else {
+		extra_class.input += "border ";
+	}
 
-		const showError = (typeof error != "boolean" && error) || (typeof success != "boolean" && success);
+	if (light) {
+		extra_class.input += "text-white placeholder-gray-md ";
+	}
 
-		if (showError) {
-			extraClass += " border-danger";
-		} else if (success) {
-			extraClass += " border-success";
-		} else {
-			extraClass += " border-gray-light";
-		}
+	const showError = (typeof error != "boolean" && error) || (typeof success != "boolean" && success);
 
-		if (className) {
-			extraClass += ` ${className}`;
-		}
+	if (showError) {
+		extra_class.input += "border-danger ";
+	} else if (success) {
+		extra_class.input += "border-success ";
+	}
 
-		return (
-			<div className="group">
-				{label ? <label className={`mb-1 block text-xs font-normal ${showError ? "text-danger" : "text-gray-500"} group-hover:text-primary`}>{label}</label> : null}
-				{children}
-				<input
-					{...default_props}
-					className={extraClass.input}
-					ref={ref}
-				/>
-				{error || note ? (
-					<div className="h-6">
-						{showError ? (
-							<div className={`text-xs ${error ? "text-danger" : success ? "text-success" : null}`}>{error || success}</div>
-						) : note ? (
-							<div className="text-xs text-gray-medium">{note}</div>
-						) : null}
-					</div>
-				) : null}
-			</div>
-		);
-	})
-);
+	if (className) {
+		extra_class.input += `${className} `;
+	}
+	if (labelClassName) {
+		extra_class.label += `${labelClassName} `;
+		if (!!error) extra_class.label += `text-danger `;
+	}
+
+	return (
+		<div className="group">
+			{label ? <label className={twMerge(`mb-1 block text-xs font-normal text-gray-500 group-hover:text-primary ${extra_class.label}`)}>{label}</label> : null}
+			{children}
+			<input
+				{...default_props}
+				className={twMerge(extra_class.input)}
+				ref={controlRef}
+			/>
+			{error || note ? (
+				<div className="h-6">
+					{showError ? (
+						<div className={`text-xs ${error ? "text-danger" : success ? "text-success" : null}`}>{error || success}</div>
+					) : note ? (
+						<div className="text-xs text-gray-medium">{note}</div>
+					) : null}
+				</div>
+			) : null}
+		</div>
+	);
+});
 export default Input;
 Input.propTypes = {
 	/** string type default is text  */
