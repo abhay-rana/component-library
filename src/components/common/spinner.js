@@ -1,7 +1,7 @@
 import { memo } from "react";
 import PropTypes from "prop-types";
 
-import "../../styles/spinner.css";
+import "styles/spinner.css";
 
 const Spinner = memo(({ micro, small, large, primary, warning, danger, success, light, className, style }) => {
 	let classList = "spinner inline-block";

@@ -119,7 +119,7 @@ const Button = memo(
 					title={tooltip}
 					style={{ position: loader ? "relative" : "", ...(style || {}) }}
 				>
-					<>
+					<div className="flex flex-row justify-center">
 						{children}
 						{!loader ? null : micro ? (
 							<Spinner
@@ -142,7 +142,7 @@ const Button = memo(
 								style={{ width: "16px", height: "16px", top: "8px", right: "5px" }}
 							/>
 						)}
-					</>
+					</div>
 				</button>
 			);
 		}
