@@ -1,166 +1,132 @@
-import React, { forwardRef, memo, useEffect, useRef } from "react";
-import { ReactComponent as Error } from "assets/svg/cross.svg";
-
-const Suffix = memo(({ children, className, onClick }) => {
-	return (
-		<>
-			<div
-				className={className}
-				onClick={onClick}
-			>
-				{children}
-			</div>
-		</>
-	);
-});
-
-const Prefix = memo(({ children, className, onClick }) => {
-	return (
-		<>
-			<div className={className}>{children}</div>
-		</>
-	);
-});
-
-const Label = memo(({ children, className, onClick, onFocusStyle }) => {
-	const label_focus_style = onFocusStyle.split().map((item) => {
-		return (item = `peer-focus:${item}`);
-	});
-	console.log(label_focus_style);
-
-	return (
-		<>
-			<label className={`${className} inline-block ${label_focus_style}`}>{children}</label>
-		</>
-	);
-});
+import { forwardRef, memo } from "react";
+import PropTypes from "prop-types";
 
 const Input = memo(
-	forwardRef(
-		(
-			{
-				label,
-				name,
-				type,
-				value,
-				child,
-				suffix,
-				prefix,
-				topHeight = 40,
-				floatingLabel = true,
-				onErrorClick = () => {},
-				onFocusStyle = "",
-				className = "",
-				placeholder,
-				onFocus = () => {},
-				required = false,
-				error,
-				iconImg,
-				disabled = false,
-				onIconClick = () => {},
-				...restProps
-			},
-			ref
-		) => {
-			const input_ref = useRef();
+	forwardRef((props, ref) => {
+		const default_props = {
+			type: props.type,
+			id: props.id,
+			name: props.name,
+			value: props.value,
+			maxLength: props.maxLength,
+			minLength: props.minLength,
+			max: props.max,
+			min: props.min,
+			disabled: props.disabled,
+			autoComplete: props.autoComplete,
+			placeholder: props.placeholder,
+			autoFocus: props.autoFocus,
+			required: props.required,
+			onFocus: props.onFocus,
+			onChange: props.onChange,
+			onKeyPress: props.onKeyPress,
+			style: props.style,
+			step: props.step,
+		};
+		const { className, error, success, small, large, children, label, stacked, controlRef, no_gap, light, note } = { ...props };
 
-			let extra_class = "";
-			let focus_label_style = "text-primary translate-x-2 -translate-y-3 bg-white px-[4px] py-[1px] text-sm ";
-			let label_className = "uppercase absolute left-0 ";
-
-			if (!!error) extra_class += `border-1 border-red-600 `;
-			if (!!disabled) className += `pointer-events-none `;
-			{
-				if (!!onFocusStyle) focus_label_style += onFocusStyle;
-
-				focus_label_style = focus_label_style
-					.split(" ")
-					.map((item) => {
-						return (item = ` peer-focus:${item} `);
-					})
-					.join("");
-				console.log(focus_label_style);
-			}
-			const getRef = (el) => {
-				input_ref.current = el;
-				if (!!ref) ref.current = el;
-			};
-
-			const addPlaceholder = () => {
-				if (!!input_ref.current) input_ref.current.placeholder = placeholder;
-				onFocus();
-			};
-
-			const removePlaceholder = () => {
-				if (!!input_ref.current) input_ref.current.placeholder = "";
-			};
-
-			return (
-				<>
-					<div
-						className={`relative inline-block h-full w-full  ${className} hover:color-`}
-						style={{ marginTop: `${topHeight}px` }}
-					>
-						{/* absolute will be respective to the parent and loose its old position */}
-						<input
-							ref={getRef}
-							id={name}
-							disabled={disabled}
-							value={value}
-							name={name}
-							type={type}
-							onFocus={addPlaceholder}
-							onBlur={removePlaceholder}
-							className={`peer w-full rounded-[5px] border-1 border-gray-400 p-[10px] outline-none transition-colors duration-150 focus:border-primary ${extra_class}`}
-							{...restProps}
-						/>
-						{label ? (
-							<label
-								htmlFor={name}
-								className={`${label_className} transition:all ease rounded-md  p-[10px] duration-300  ${focus_label_style} ${error ? "text-red-400" : ""} ${
-									value ? "translate-x-2 -translate-y-3 bg-white px-3 py-0 text-sm text-primary" : ""
-								} `}
-							>
-								{label}
-								{required ? <span className="absolute text-red-600 ">*</span> : null}
-							</label>
-						) : null}
-						{error ? (
-							<>
-								<p className="text-red-600">{error}</p>
-								<div
-									className="absolute right-0 top-1 cursor-pointer p-[10px] hover:scale-125"
-									onClick={onErrorClick}
-								>
-									{!iconImg ? (
-										<Error
-											fill="red"
-											className="h-4 w-4"
-										/>
-									) : null}
-								</div>
-							</>
-						) : null}
-						{!!iconImg ? (
-							<div
-								className="absolute right-0 top-1 cursor-pointer p-[3px] hover:scale-125"
-								onClick={onIconClick}
-							>
-								{iconImg}
-							</div>
-						) : null}
-						{suffix}
-						{prefix}
-					</div>
-				</>
-			);
+		let extraClass = "w-full z-0 box-border text-gray-dark focus:border-primary focus:outline-none placeholder-gray-light hover:border-primary";
+		if (small) {
+			extraClass += stacked ? " h-7 text-base" : " h-7 px-2 text-base";
+		} else if (large) {
+			extraClass += stacked ? " h-10" : " h-10 px-2";
+		} else {
+			extraClass += stacked ? " h-8 text-base" : " h-8 px-2 text-base";
 		}
-	)
+
+		if (stacked) {
+			extraClass += " border-b bg-transparent px-0";
+		} else {
+			extraClass += " border";
+		}
+
+		if (light) {
+			extraClass += " text-white placeholder-gray-md";
+		}
+
+		const showError = (typeof error != "boolean" && error) || (typeof success != "boolean" && success);
+
+		if (showError) {
+			extraClass += " border-danger";
+		} else if (success) {
+			extraClass += " border-success";
+		} else {
+			extraClass += " border-gray-light";
+		}
+
+		if (className) {
+			extraClass += ` ${className}`;
+		}
+
+		return (
+			<div className="group">
+				{label ? <label className={`mb-1 block text-xs font-normal ${showError ? "text-danger" : "text-gray-500"} group-hover:text-primary`}>{label}</label> : null}
+				{children}
+				<input
+					{...default_props}
+					className={extraClass.input}
+					ref={ref}
+				/>
+				{error || note ? (
+					<div className="h-6">
+						{showError ? (
+							<div className={`text-xs ${error ? "text-danger" : success ? "text-success" : null}`}>{error || success}</div>
+						) : note ? (
+							<div className="text-xs text-gray-medium">{note}</div>
+						) : null}
+					</div>
+				) : null}
+			</div>
+		);
+	})
 );
-
-Input.Suffix = Suffix;
-Input.Prefix = Prefix;
-Input.Label = Label;
-Input.displayName = "Input";
-
 export default Input;
+Input.propTypes = {
+	/** string type default is text  */
+	type: PropTypes.string,
+	/** default is false   */
+	disabled: PropTypes.bool,
+	/** Extra class for input  */
+	className: PropTypes.string,
+	/** bool type default is false input type success  */
+	success: PropTypes.bool,
+	/** bool type default is false  */
+	error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+	/** True make small button default is medium*/
+	small: PropTypes.bool,
+	/** True make large button default is medium  */
+	large: PropTypes.bool,
+	/** onChange accept function  */
+	onChange: PropTypes.func,
+	/** onFocus accept function  */
+	onFocus: PropTypes.func,
+	/** onKeyPress accept function */
+
+	onKeyPress: PropTypes.func,
+	/*maxLength accept number  */
+	maxLength: PropTypes.string,
+	/*minLength accept number  */
+	minLength: PropTypes.string,
+	/*max accept number  */
+	max: PropTypes.string,
+	/*min accept number  */
+	min: PropTypes.string,
+	/** ref */
+	// ref: PropTypes.object,
+
+	/** boolean set auto focus default is false */
+	autoFocus: PropTypes.bool,
+	/** label on input string type */
+	label: PropTypes.string,
+	/** stacked bool type to position label */
+	stacked: PropTypes.bool,
+
+	/**bool type  required true if field can't be empty */
+	required: PropTypes.bool,
+	/*auto complete text suggestion string type*/
+	autoComplete: PropTypes.string,
+	/**input inline css object*/
+	style: PropTypes.object,
+	/**input placeholder string type */
+	placeholder: PropTypes.string,
+};

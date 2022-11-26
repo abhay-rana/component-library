@@ -54,6 +54,11 @@ so there are 4 ways so to close this modal
 1->"required" props for the asterisk sign (default false)
 2-> "onChange" to set the "value" of the input
 3-> "error" validation with the red cross icon
-4-> "iconImg" prop for the render the image on the input field you can render the image or the normal image also
-5-> "onImageClick" callback fires on the image click
-6-> "onErrorClick" callback fired on the error image click
+4-> "prefix" for the image or the text at the starting
+5-> "suffix" for the image or the text or can be the both
+6-> "description" tells more about the input
+7-> "wordCount"(shows the total characters) for the written text should not be go beyond the "maxLength"
+8-> variants are "base" and "large"
+9-> "reveal" for showing the password
+10-> "stacked" for the border bottom
+11-> "filled" for the grey background

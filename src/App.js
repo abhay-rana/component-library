@@ -1,11 +1,13 @@
 import React from "react";
 
-import CustomInput from "screens/input-test";
+import FloatingLabel from "screens/floating-label-input";
+import NormalLabel from "screens/normal-label";
 
 const App = () => {
 	return (
 		<>
-			<CustomInput />
+			<FloatingLabel />
+			<NormalLabel />
 		</>
 	);
 };

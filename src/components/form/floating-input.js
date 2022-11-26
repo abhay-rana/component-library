@@ -1,10 +1,10 @@
 import React, { forwardRef, memo, useRef, useState } from "react";
 
-import { ReactComponent as Eye } from "assets/svg/eye.svg";
 import { ReactComponent as Visible } from "assets/svg/visible.svg";
 import { ReactComponent as Invisible } from "assets/svg/invisible.svg";
+import { twMerge } from "tailwind-merge";
 
-const MyInput = memo(
+const FloatingInput = memo(
 	forwardRef((props, ref) => {
 		const default_props = {
 			type: props.type,
@@ -26,7 +26,7 @@ const MyInput = memo(
 			style: props.style,
 			step: props.step,
 		};
-		const { label, className, prefix, suffix, large, base = true, description, wordCount, error, stacked, maxLength, value, required } = props;
+		const { label, className, prefix, suffix, large, base = true, description, wordCount, error, stacked, maxLength, value, required, filled } = props;
 
 		let extra_class = {
 			input: " ",
@@ -50,7 +50,7 @@ const MyInput = memo(
 		};
 
 		if (!!prefix) {
-			extra_class.label += `peer-placeholder-shown:left-9 left-1 peer-focus:left-1 `;
+			extra_class.label += `peer-placeholder-shown:left-9 left-1 peer-focus:left-[6px] `;
 			extra_class.input += `pl-10 `;
 			if (base) extra_class.prefix += `top-3 `;
 			if (large) extra_class.prefix += `!top-4 `;
@@ -81,6 +81,11 @@ const MyInput = memo(
 			extra_class.input += `border rounded `;
 		}
 
+		if (filled) {
+			extra_class.input += `bg-gray-300 border-0 border-b-2 hover:border-b-primary pt-5 `;
+			extra_class.label += `peer-focus:top-0 bg-transparent `;
+		}
+
 		if (!!className) {
 			extra_class.input += `${className} `;
 		}
@@ -95,14 +100,15 @@ const MyInput = memo(
 						{...default_props}
 						ref={hydrateRef}
 						type={show_password ? "password" : "text"}
-						className={` px-4  ${extra_class.input}`}
+						className={twMerge(`px-4  ${extra_class.input}`)}
+						placeholder=" "
 					/>
 					<label
 						onClick={inputFocus}
 						htmlFor={default_props.name}
-						className={`absolute -top-2.5 left-3 bg-white px-1 text-xs text-slate-400 transition-all duration-150 ease-in peer-placeholder-shown:text-base
-                        peer-hover:text-primary peer-focus:-top-2.5
-                        peer-focus:left-3 peer-focus:text-xs peer-focus:text-primary ${extra_class.label}`}
+						className={twMerge(`absolute -top-2.5 left-3 bg-white px-1 text-xs text-slate-400 transition-all duration-150 ease-in
+                        peer-placeholder-shown:text-base peer-hover:text-primary peer-focus:-top-2.5
+                        peer-focus:left-3 peer-focus:text-xs peer-focus:text-primary ${extra_class.label}`)}
 					>
 						<span>{label}</span>
 						{required ? <span className="text-danger"> *</span> : null}
@@ -146,4 +152,4 @@ const MyInput = memo(
 	})
 );
 
-export default MyInput;
+export default FloatingInput;

@@ -1,18 +1,12 @@
 import React, { useState } from "react";
 
-import Input from "components/form/input";
-import AnupInput from "components/form/input-anup";
-import AbhayInput from "components/form/input-new";
-
 import { ReactComponent as Cross } from "assets/svg/cross.svg";
 import { ReactComponent as Download } from "assets/svg/download.svg";
-import { ReactComponent as Search } from "assets/svg/search.svg";
-import FloatingLabel from "components/form/floating-label";
-import InputPlain, { InputPlainLarge } from "components/form/wind-ui";
-import MyInput from "components/form/my-input";
+
+import FloatingInput from "components/form/floating-input";
 import Button from "components/common/button";
 
-const CustomInput = () => {
+const FloatingLabelTest = () => {
 	const [username, setUsername] = useState("");
 	const [error, setError] = useState("This is error text");
 
@@ -20,7 +14,7 @@ const CustomInput = () => {
 		<>
 			<div className="flex flex-col">
 				<div className="m-4 w-[300px] ">
-					<MyInput
+					<FloatingInput
 						name="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -48,7 +42,7 @@ const CustomInput = () => {
 				</div>
 				{/* password (suffix will not be rendered if the input type is password)  */}
 				<div className="m-4 w-[300px]">
-					<MyInput
+					<FloatingInput
 						name="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -75,7 +69,7 @@ const CustomInput = () => {
 					/>
 				</div>
 				<div className="m-4 w-[300px]">
-					<MyInput
+					<FloatingInput
 						name="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -106,7 +100,7 @@ const CustomInput = () => {
 					/>
 				</div>
 				<div className="m-4 mt-6 w-[300px]">
-					<MyInput
+					<FloatingInput
 						name="username"
 						value={username}
 						error={error}
@@ -139,7 +133,7 @@ const CustomInput = () => {
 					/>
 				</div>
 				<div className="m-4 mt-6 w-[300px]">
-					<MyInput
+					<FloatingInput
 						name="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -173,7 +167,7 @@ const CustomInput = () => {
 					/>
 				</div>
 				<div className="m-4 mt-6 w-[300px]">
-					<MyInput
+					<FloatingInput
 						name="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -190,7 +184,7 @@ const CustomInput = () => {
 				</div>
 				{/* prefix text */}
 				<div className="m-4 mt-6 w-[300px]">
-					<MyInput
+					<FloatingInput
 						name="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -213,7 +207,7 @@ const CustomInput = () => {
 				</div>
 				{/* newsletter like button*/}
 				<div className="m-4 mt-6 w-[300px]">
-					<MyInput
+					<FloatingInput
 						name="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -229,10 +223,24 @@ const CustomInput = () => {
 						}
 					/>
 				</div>
-				{/*  */}
+				{/* filled */}
+				<div className="m-4 mt-6 w-[300px]">
+					<FloatingInput
+						name="username"
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
+						type="text"
+						placeholder="text"
+						className="pr-[134px]"
+						label="Username"
+						base
+						large
+						filled
+					/>
+				</div>
 			</div>
 		</>
 	);
 };
 
-export default CustomInput;
+export default FloatingLabelTest;
