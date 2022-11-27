@@ -27,7 +27,7 @@
 escape button , cross button , outside clicks or programmatically close of the modal (by the Modal.hide("id"))
 so there are 4 ways so to close this modal
 1-> outside click
-2-> escape button
+2-> escape button (Accessibility)
 3-> close button
 4-> programmatically Modal.hide("id")
 
@@ -44,9 +44,9 @@ so there are 4 ways so to close this modal
 
 <!-- React TextArea -->
 
-1-> Autogrow textarea
-2-> have the min row which is the minimum height of the textarea
-3-> have the max row which is the maximum height of the textarea after that height if the more content is added then show the scroll bar increase the scroll height but not the height
+1-> Auto grow textarea
+2-> have the minimum height of the textarea "minHeight" (compulsory) (in pixels)
+3-> have the maximum height of the textarea after that height if the more content is added then show the scroll bar increase the scroll height but not the height "maxHeight"
 4-> max word count also which will stops the writing
 
 <!-- react Custom Input Floating label-->
