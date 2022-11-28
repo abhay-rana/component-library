@@ -45,9 +45,10 @@ so there are 4 ways so to close this modal
 <!-- React TextArea -->
 
 1-> Auto grow textarea
-2-> have the minimum height of the textarea "minHeight" (compulsory) (in pixels)
+2-> have the minimum height of the textarea "minHeight" (compulsory) (in pixels) (default minHeight is 48px)
 3-> have the maximum height of the textarea after that height if the more content is added then show the scroll bar increase the scroll height but not the height "maxHeight"
 4-> max word count also which will stops the writing
+5-> by default resizing is not allowed if you want you can pass the "resize" props
 
 <!-- react Custom Input Floating label-->
 

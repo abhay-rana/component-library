@@ -24,7 +24,7 @@ const Textarea = memo(
 			row: props.row,
 			col: props.col,
 		};
-		const { className, error, success, small, large, children, label, stacked, light, minHeight = "", maxHeight = "", padding } = { ...props };
+		const { className, error, success, small, large, children, label, stacked, light, minHeight = 48, maxHeight = "", padding, resize = false } = { ...props };
 
 		const calc_height = useRef(0);
 
@@ -37,17 +37,11 @@ const Textarea = memo(
 
 		extra_class.input += "w-full z-0 text-gray-dark box-border focus:border-primary focus:outline-none placeholder-gray-medium outline-none hover:border-primary border border-slate-400 ";
 
-		// if (small) {
-		// 	extra_class += stacked ? "h-20 text-base " : "h-20 px-2 text-base ";
-		// } else if (large) {
-		// 	extra_class += stacked ? "h-56 " : "h-56 px-2 ";
-		// } else {
-		// 	extra_class += stacked ? "h-36 text-base " : "h-36 px-2 text-base ";
-		// }
-
-		const border_width = 1;
-		const row_height = 24;
-		let numberOfLineBreaks = 0;
+		if (small) {
+			extra_class.input += stacked ? "h-20 text-base " : "h-20 px-2 text-base ";
+		} else if (large) {
+			extra_class.input += stacked ? "h-56 " : "h-56 px-2 ";
+		}
 
 		if (stacked) {
 			extra_class.input += "border-b bg-transparent px-0 ";
@@ -63,6 +57,10 @@ const Textarea = memo(
 			extra_class.input += "border-success ";
 		}
 
+		if (!resize) {
+			extra_class.input += `resize-none `;
+		}
+
 		if (className) {
 			extra_class.input += `${className} `;
 		}
@@ -75,7 +73,7 @@ const Textarea = memo(
 		useEffect(() => {
 			// scrollHeight is automatically calculated according to the line height on the every enter pressed
 
-			//this have to reset every time on Change so that "scrollHeight" works properly
+			//this have to reset every time on Change so that "scrollHeight" works properly (set to 0 always )
 			input_ref.current.style.height = 0;
 			input_ref.current.style.height = input_ref.current.scrollHeight + "px";
 

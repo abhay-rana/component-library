@@ -16,14 +16,15 @@ const TextAreaTest = () => {
 					<TextArea
 						value={state}
 						error={error}
-						minHeight={48} // minimum number of rows (enter)
-						maxHeight={600} //maximum number of rows after that show the scrollBAr
+						// minHeight={48} // minimum number of rows (enter)
+						maxHeight={600} //maximum number of rows after that show the scrollbar
 						maxLength={200} //you cant enter the more words than this
 						wordCounter
 						label="username"
 						onFocus={() => setError("")}
 						onChange={(e) => setState(e.target.value)}
 						className="p-4"
+						resize //if you want the draggable feature in vertical direction
 						placeholder="textarea with the padding with the maximum height"
 					/>
 				</div>
