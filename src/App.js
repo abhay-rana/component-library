@@ -5,6 +5,7 @@ import NormalLabel from "screens/normal-label";
 import FloatingLabel from "screens/floating-label-input";
 import SpinnerTest from "screens/spinner-test";
 import TextAreaTest from "screens/text-area-test";
+import RadioTest from "screens/radio-test";
 
 const App = () => {
 	return (
@@ -13,7 +14,8 @@ const App = () => {
 			{/* <NormalLabel />  */}
 			{/* <ButtonTest /> */}
 			{/* <SpinnerTest /> */}
-			<TextAreaTest />
+			{/* <TextAreaTest /> */}
+			<RadioTest />
 		</>
 	);
 };

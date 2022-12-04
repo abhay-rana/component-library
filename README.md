@@ -69,3 +69,12 @@ so there are 4 ways so to close this modal
 1-> "labelClassName" to style the label
 2-> "error"
 3-> "stacked"
+
+<!-- React Radio button -->
+
+height and width works normally but color does not work so we give the accent color
+reset the browser styling radio button
+appearance-none
+
+1-> group of radio buttons "name" props is must for the grouping
+2-> style the radio container group by the className
