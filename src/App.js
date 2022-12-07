@@ -6,6 +6,7 @@ import FloatingLabel from "screens/floating-label-input";
 import SpinnerTest from "screens/spinner-test";
 import TextAreaTest from "screens/text-area-test";
 import RadioTest from "screens/radio-test";
+import CheckboxTest from "screens/checkbox-test";
 
 const App = () => {
 	return (
@@ -15,7 +16,8 @@ const App = () => {
 			{/* <ButtonTest /> */}
 			{/* <SpinnerTest /> */}
 			{/* <TextAreaTest /> */}
-			<RadioTest />
+			{/* <RadioTest /> */}
+			<CheckboxTest />
 		</>
 	);
 };

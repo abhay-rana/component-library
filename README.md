@@ -73,8 +73,11 @@ so there are 4 ways so to close this modal
 <!-- React Radio button -->
 
 height and width works normally but color does not work so we give the accent color
-reset the browser styling radio button
-appearance-none
+reset the browser styling radio button by "appearance-none"
+make our own radio button styling by the span tag
 
 1-> group of radio buttons "name" props is must for the grouping
 2-> style the radio container group by the className
+3-> it should be checked if the "value" provided by the RadioGroup is equal to "value" given to the "Radio"
+
+<!-- React Checkbox -->

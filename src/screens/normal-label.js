@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import Input from "components/form/input";
+import Input from "components/form/input/input";
 
 const NormalLabel = () => {
 	const [state, setState] = useState("");

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { ReactComponent as Cross } from "assets/svg/cross.svg";
 import { ReactComponent as Download } from "assets/svg/download.svg";
 
-import FloatingInput from "components/form/floating-input";
+import FloatingInput from "components/form/input/floating-input";
 import Button from "components/common/button";
 
 const FloatingLabelTest = () => {

@@ -12,6 +12,7 @@ const RadioTest = () => {
 	return (
 		<>
 			<div className="border border-red-400">
+				{/* you have to pass the "name" props to the RadioGroup component */}
 				<RadioGroup
 					value={value}
 					onChange={(data) => changeValue(data)}

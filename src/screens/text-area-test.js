@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import TextArea from "components/form/text-area";
+import TextArea from "components/form/input/text-area";
 
 const TextAreaTest = () => {
 	const [state, setState] = useState("");
