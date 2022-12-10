@@ -4,19 +4,27 @@ import Checkbox from "components/form/checkbox/checkbox";
 
 const CheckboxTest = () => {
 	const [first, setfirst] = useState("");
+
 	const run = (e) => {
 		console.log(e);
 	};
+
 	return (
 		<>
 			<div>
 				<Checkbox
-					label="checkbox"
-					name="lang"
+					label="JavaScript"
+					name="languages"
 					value="javascript"
-					onFocus={run}
-					tooltip="title"
-					checked //it should be true e.target.value is equal to value
+					// checked={first.includes("javascript")}
+					onChange={run}
+				/>
+				<Checkbox
+					label="Rust"
+					name="rust"
+					value="rust"
+					// checked={first.includes("javascript")}
+					onChange={run}
 				/>
 			</div>
 		</>

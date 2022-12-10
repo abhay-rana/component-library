@@ -1,65 +1,59 @@
-import { memo } from "react";
-import PropTypes from "prop-types";
+import React, { useRef, memo } from "react";
 
-const Checkbox = memo((props) => {
+import { ReactComponent as Tick } from "assets/svg/tick-svg.svg";
+
+const Checkbox = (props) => {
 	const default_props = {
-		id: props.id,
 		name: props.name,
+		id: props.id || props.name,
+		checked: props.checked,
+		value: props.value,
+		onChange: props.onChange,
+		type: "checkbox",
 		disabled: props.disabled,
-		onFocus: props.onFocus,
-		onClick: props.onChange,
 	};
-	const { className, label, error, note, tooltip, checked } = { ...props };
+	const { className, label, disabled } = props;
 
-	const showError = typeof error != "boolean" && error;
+	const checkbox_ref = useRef();
 
-	let extraClass = "relative h-4 w-4 inline-block border";
+	const extra_class = {
+		events: "",
+	};
 
-	if (className) {
-		extraClass += ` ${className}`;
+	if (disabled) {
+		extra_class.events = `pointer-events-none `;
+		extra_class.label = `opacity-75 `;
 	}
-	if (checked) {
-		extraClass += " bg-primary border-primary";
-	}
-	if (error) {
-		extraClass += " border-danger bg-white ";
-	} else {
-		extraClass += " border-gray-light bg-white";
-	}
+
+	const changeInput = () => {
+		checkbox_ref.current.click();
+		//this fires the onChange of the input field via the ref
+		//click is the method of the native html dom api and onClick is the method of the React.createElement("input")
+	};
 
 	return (
-		<div title={tooltip}>
-			<button
+		<div className={`${extra_class.events} relative flex flex-row  border border-black`}>
+			<input
 				{...default_props}
-				className={`flex items-center ${default_props.disabled ? "opacity-50" : null}`}
+				className="peer ml-6 cursor-pointer appearance-none"
+				ref={checkbox_ref}
+				onChange={(e) => default_props.onChange(e)}
+			/>
+			<span
+				onClick={changeInput}
+				className="absolute top-1.5 left-0 z-50 inline-block h-[13px] w-[13px] cursor-pointer border border-black transition-colors duration-200 ease-in-out peer-checked:border-blue-600 peer-disabled:border-blue-300"
+			></span>
+			<div className="invisible absolute top-2 left-[1px] h-2 w-2 opacity-0 transition-all duration-200 ease-in-out peer-checked:visible peer-checked:opacity-100">
+				<Tick fill="black" />
+			</div>
+			<label
+				htmlFor={default_props.id}
+				className={`cursor-pointer ${extra_class.label}`}
 			>
-				<span className={extraClass}>
-					{checked ? (
-						<svg
-							viewBox="0 0 512 512"
-							className="absolute top-1/2 left-1/2 -ml-1.5 -mt-1.5 h-3 w-3 fill-current text-black"
-						>
-							<path
-								d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0
-			c-9.998,9.997-9.998,26.205,0,36.203l135.994,135.992c9.994,9.997,26.214,9.99,36.204,0L504.502,111.7
-			C514.5,101.703,514.499,85.494,504.502,75.496z"
-							/>
-						</svg>
-					) : null}
-				</span>
-				<span className="ml-1 font-normal text-gray-500">{label}</span>
-			</button>
-			{error || note ? <div className="h-6">{showError ? <div className="text-xs text-danger">{error}</div> : note ? <div className="text-xs text-gray-medium">{note}</div> : null}</div> : null}
+				{label}
+			</label>
 		</div>
 	);
-});
-export default Checkbox;
-Checkbox.propTypes = {
-	disabled: PropTypes.bool,
-	checked: PropTypes.bool /*checkbox state by default false*/,
-	className: PropTypes.string /** Extra class for input  */,
-	success: PropTypes.bool /** bool type default is false input type success  */,
-	error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]) /** bool type default is false  */,
-	onChange: PropTypes.func /*to change input state checked, unchecked function*/,
-	label: PropTypes.string /** label on input string type */,
 };
+
+export default memo(Checkbox);
