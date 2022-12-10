@@ -37,7 +37,6 @@ const Checkbox = (props) => {
 				{...default_props}
 				className="peer ml-6 cursor-pointer appearance-none"
 				ref={checkbox_ref}
-				onChange={(e) => default_props.onChange(e)}
 			/>
 			<span
 				onClick={changeInput}

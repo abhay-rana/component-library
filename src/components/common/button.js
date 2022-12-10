@@ -26,6 +26,7 @@ const Button = memo(
 				onClick,
 				tooltip,
 				children,
+				ripple,
 				controlRef,
 				block,
 				noUpperCase,

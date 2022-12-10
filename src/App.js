@@ -7,6 +7,7 @@ import SpinnerTest from "screens/spinner-test";
 import TextAreaTest from "screens/text-area-test";
 import RadioTest from "screens/radio-test";
 import CheckboxTest from "screens/checkbox-test";
+import SwitchTest from "screens/switch-test";
 
 const App = () => {
 	return (
@@ -17,7 +18,9 @@ const App = () => {
 			{/* <SpinnerTest /> */}
 			{/* <TextAreaTest /> */}
 			{/* <RadioTest /> */}
-			<CheckboxTest />
+			{/* <CheckboxTest /> */}
+			{/* <SwitchTest /> */}
+			<RippleEffect />
 		</>
 	);
 };
