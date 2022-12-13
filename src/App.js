@@ -8,6 +8,7 @@ import TextAreaTest from "screens/text-area-test";
 import RadioTest from "screens/radio-test";
 import CheckboxTest from "screens/checkbox-test";
 import SwitchTest from "screens/switch-test";
+import RippleTest from "screens/ripple-test";
 
 const App = () => {
 	return (
@@ -20,7 +21,7 @@ const App = () => {
 			{/* <RadioTest /> */}
 			{/* <CheckboxTest /> */}
 			{/* <SwitchTest /> */}
-			<RippleEffect />
+			<RippleTest />
 		</>
 	);
 };
