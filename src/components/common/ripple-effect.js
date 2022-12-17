@@ -1,61 +1,43 @@
-import { clearConfigCache } from "prettier";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { twMerge } from "tailwind-merge";
 
 const RippleEffect = ({ type, id, className, ripple, onClick, style, children }) => {
-	const button_ref = useRef();
-	const [is_ripple, setIsRipple] = useState(false);
-	const [coords, setCoords] = useState({ x: -1, y: -1, dot_size_ripple: 0, hypotenuse_btn_el: 0 });
+	function createRipple(event) {
+		const button = event.currentTarget;
 
-	useEffect(() => {
-		if (coords.x !== -1 && coords.y !== -1) {
-			setIsRipple(true);
-			setTimeout(() => setIsRipple(false), 1000);
-		} else {
-			setIsRipple(false);
+		// creating the span element directly
+		const circle = document.createElement("span");
+		const diameter = Math.max(button.clientWidth, button.clientHeight);
+
+		// get the position of the click with respect to the button element
+		circle.style.width = circle.style.height = `${diameter / 2}px`;
+		circle.style.left = `${event.clientX - button.offsetLeft}px`;
+		circle.style.top = `${event.clientY - button.offsetTop}px`;
+
+		//adding the ripple animation class
+		circle.classList.add("custom_ripple");
+
+		const ripple = button.getElementsByClassName("custom_ripple")[0];
+
+		//remove the span ripple is there is already there so we start the animation from the beginning
+		if (ripple) {
+			ripple.remove();
 		}
-	}, [coords]);
 
-	// useEffect(() => {
-	// 	if (!is_ripple) setCoords({ x: -1, y: -1 });
-	// }, [is_ripple]);
+		//append the span ripple in the DOM
+		button.appendChild(circle);
 
-	const handleClick = (e) => {
-		if (e.target == e.currentTarget) {
-			const longest_side = Math.sqrt(Math.pow(button_ref.current.offsetWidth, 2) + Math.pow(button_ref.current.offsetHeight, 2));
-			setCoords({
-				x: e.clientX - e.target.offsetLeft,
-				y: e.clientY - e.target.offsetTop,
-				hypotenuse_btn_el: longest_side,
-				dot_size_ripple: Math.ceil((longest_side * 2) / 100),
-			});
-			onClick && onClick(e);
-		}
-	};
+		// perform the onClick callback function
+		onClick && onClick(event);
+	}
 
 	return (
 		<>
 			<button
 				type="button"
-				id={id}
-				className={twMerge("ripple_btn ", className)}
-				data-ripple={ripple}
-				onClick={handleClick}
-				style={style}
-				ref={button_ref}
+				className={twMerge("custom_btn", className)}
+				onClick={createRipple}
 			>
-				{/* show ripple animation if click on the button  */}
-				{is_ripple ? (
-					<span
-						className="ripple"
-						style={{
-							left: coords.x,
-							top: coords.y,
-							width: `${coords.dot_size_ripple}px`,
-							height: `${coords.dot_size_ripple}px`,
-						}}
-					/>
-				) : null}
 				<span className="">{children}</span>
 			</button>
 		</>
