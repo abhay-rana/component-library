@@ -18,6 +18,7 @@ html,body {
 
 /* min-height is not inherited by the child  so we have replace the min-height by the height property */
 
+/* Ripple Animation */
 .custom_btn{
 	position: relative;
 	overflow: hidden;
@@ -51,7 +52,7 @@ span.custom_ripple{
 	  }
 }
 
-
+/* Transition Animations */
 .fade-in-animation{
 	animation-name: fadeIn;
 	animation-duration: 300ms;
@@ -95,3 +96,22 @@ span.custom_ripple{
 	  
 	}
   }
+
+/* Wave Box Shadow Css */
+.custom_shadow_hover:hover{
+	box-shadow: 0px 0px 1px 5px rgba(0, 0, 0, 0.1) ;				
+}
+
+.custom_shadow_click{
+	animation-name:wave_shadow;
+	animation-duration: 500ms;
+}
+
+@keyframes wave_shadow {
+	0%{
+		box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.1);				
+	}
+	100%{
+		box-shadow: 0px 0px 2px 5px rgba(0, 0, 0, 0.2);				
+	}
+}

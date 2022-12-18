@@ -150,8 +150,38 @@ const Button = memo(
 	)
 );
 
+export const IconButton = ({ children, onClick, className }) => {
+	const createWave = (event) => {
+		const icon_button_class = event.currentTarget.classList;
+
+		if (icon_button_class.contains("custom_shadow_click")) icon_button_class.remove("custom_shadow_click");
+
+		// -> triggering reflow /* The actual magic */
+		// without this it wouldn't work. Try uncommenting the line and the transition won't be retriggered.
+		// Oops! This won't work in strict mode
+		// element.offsetWidth = element.offsetWidth;
+		// Do this instead:
+		void event.currentTarget.offsetWidth;
+
+		icon_button_class.add("custom_shadow_click");
+
+		onClick && onClick(event);
+	};
+	return (
+		<>
+			<div
+				className={twMerge("custom_shadow_hover relative flex h-full w-full flex-row items-center justify-center overflow-hidden rounded-full", className)}
+				onClick={createWave}
+			>
+				<div className="pointer-events-none">{children}</div>
+			</div>
+		</>
+	);
+};
+
 Button.displayName = "Button";
 export default Button;
+
 Button.propTypes = {
 	/** True make loader visible  */
 	loader: PropTypes.bool,

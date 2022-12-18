@@ -73,6 +73,8 @@ const Textarea = memo(
 		useEffect(() => {
 			// scrollHeight is automatically calculated according to the line height on the every enter pressed
 
+			// -> triggering reflow /* The actual magic */
+			// without this it wouldn't work. Try uncommenting the line and the transition won't be retriggered.
 			//this have to reset every time on Change so that "scrollHeight" works properly (set to 0 always )
 			input_ref.current.style.height = 0;
 			input_ref.current.style.height = input_ref.current.scrollHeight + "px";

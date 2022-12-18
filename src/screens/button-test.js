@@ -1,6 +1,6 @@
 import React from "react";
 
-import Button from "components/common/button";
+import Button, { IconButton } from "components/common/button";
 import { ReactComponent as Download } from "assets/svg/download.svg";
 
 const ButtonTest = () => {
@@ -136,6 +136,20 @@ const ButtonTest = () => {
 										fill={"red"}
 									/>
 								</Button>
+							</div>
+						</div>
+					</div>
+					<div className="flex flex-row">
+						<div className="flex basis-24 items-center justify-center border border-red-100	">Icon buttons</div>
+						<div className="flex h-10 grow flex-row flex-wrap gap-x-4 border border-blue-300">
+							<div className="h-full w-10 rounded-full bg-gray-200">
+								<IconButton onClick={() => console.log("abhay")}>
+									<Download
+										width={18}
+										fill={"red"}
+										onClick={() => console.log("children is clicked")}
+									/>
+								</IconButton>
 							</div>
 						</div>
 					</div>

@@ -16,14 +16,14 @@ const App = () => {
 		<>
 			{/* <FloatingLabel /> */}
 			{/* <NormalLabel />  */}
-			{/* <ButtonTest /> */}
+			<ButtonTest />
 			{/* <SpinnerTest /> */}
 			{/* <TextAreaTest /> */}
 			{/* <RadioTest /> */}
 			{/* <CheckboxTest /> */}
 			{/* <SwitchTest /> */}
 			{/* <RippleTest /> */}
-			<ModalTest />
+			{/* <ModalTest /> */}
 		</>
 	);
 };
