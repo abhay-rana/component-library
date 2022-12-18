@@ -88,3 +88,9 @@ make our own radio button styling by the span tag
 4-> "onClick" and "onFocus" for the firing of the function
 5-> "name" should have the different(unique) name props
 6-> "checked" props is a (boolean)
+
+<!-- RippleEffect Wrapper Component -->
+
+1-> wrap the children component inside this component
+2-> dont propagate the event from children to the parent
+like product card inside this component there can be many component which have the ripple effect also

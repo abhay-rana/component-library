@@ -29,6 +29,7 @@ html,body {
 	font-size: 1.5rem;
 	outline: 0;
 	border: 0;
+	
 	border-radius: 0.25rem;
 	box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3); /* black with 30% opacity */
 	cursor: pointer;
@@ -49,3 +50,48 @@ span.custom_ripple{
 		opacity: 0;
 	  }
 }
+
+
+.fade-in-animation{
+	animation-name: fadeIn;
+	animation-duration: 300ms;
+	transition-timing-function:ease;
+	animation-fill-mode: forwards;
+}
+
+.custom_fade-out-animation{	
+	animation-name: fadeOut;
+	animation-duration: 500ms;
+	transition-timing-function:cubic-bezier(.075,.82,.165,1);
+}
+@keyframes fadeIn {
+	0% {
+	  opacity: 0;
+	
+	}
+	100% {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color:  #00000073;
+	  	opacity: 1;
+	}
+  }
+  
+  @keyframes fadeOut {
+	0% {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		opacity: 1;
+		background-color:  rgba(0, 0, 0, 0.5);
+	}
+	100% {
+	  opacity: 0;
+	  
+	}
+  }
