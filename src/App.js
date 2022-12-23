@@ -10,13 +10,15 @@ import CheckboxTest from "screens/checkbox-test";
 import SwitchTest from "screens/switch-test";
 import RippleTest from "screens/ripple-test";
 import ModalTest from "screens/modal-test";
+import TooltipTest from "screens/tooltip-test";
+import FaqAccordion from "screens/faq-accordion";
 
 const App = () => {
 	return (
 		<>
 			{/* <FloatingLabel /> */}
 			{/* <NormalLabel />  */}
-			<ButtonTest />
+			{/* <ButtonTest /> */}
 			{/* <SpinnerTest /> */}
 			{/* <TextAreaTest /> */}
 			{/* <RadioTest /> */}
@@ -24,6 +26,8 @@ const App = () => {
 			{/* <SwitchTest /> */}
 			{/* <RippleTest /> */}
 			{/* <ModalTest /> */}
+			{/* <TooltipTest /> */}
+			<FaqAccordion />
 		</>
 	);
 };

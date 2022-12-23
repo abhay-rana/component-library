@@ -5,7 +5,8 @@ import { AccordionProvider } from "./index";
 import Header from "./header";
 import Content from "./content";
 import AccordionItem from "./accordrion-item";
-import { arrayRemove } from "../../../scripts/utils-functions";
+
+import { arrayRemove } from "scripts/utils-functions";
 
 const Accordion = memo(({ children, onClick = () => {}, defaultExpanded, openMultiple = false }) => {
 	const [get_id, setExpand] = useState([defaultExpanded]);

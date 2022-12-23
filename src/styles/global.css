@@ -99,7 +99,7 @@ span.custom_ripple{
 
 /* Wave Box Shadow Css */
 .custom_shadow_hover:hover{
-	box-shadow: 0px 0px 1px 5px rgba(0, 0, 0, 0.1) ;				
+	background-color:  rgba(0, 0, 0, 0.1);
 }
 
 .custom_shadow_click{
