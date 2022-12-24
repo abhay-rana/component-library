@@ -12,6 +12,8 @@ import RippleTest from "screens/ripple-test";
 import ModalTest from "screens/modal-test";
 import TooltipTest from "screens/tooltip-test";
 import FaqAccordion from "screens/faq-accordion";
+import SelectTest from "screens/select-test";
+import DividerTest from "screens/divider-test";
 
 const App = () => {
 	return (
@@ -26,8 +28,10 @@ const App = () => {
 			{/* <SwitchTest /> */}
 			{/* <RippleTest /> */}
 			{/* <ModalTest /> */}
+			{/* <FaqAccordion /> */}
+			{/* <SelectTest /> */}
+			<DividerTest />
 			{/* <TooltipTest /> */}
-			<FaqAccordion />
 		</>
 	);
 };

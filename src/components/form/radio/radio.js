@@ -49,7 +49,11 @@ export const Radio = (props) => {
 
 const RadioGroup = ({ children, name, className, value, onChange }) => {
 	//pass the "name" "value" "onChange" to the children component which is Radio Component
-	return <div className={twMerge(`flex flex-col ${className}`)}>{React.Children.map(children, (child) => React.cloneElement(child, { name: name, current_value: value, onChange: onChange }))}</div>;
+	return (
+		<>
+			<div className={twMerge(`flex flex-col ${className}`)}>{React.Children.map(children, (child) => React.cloneElement(child, { name: name, current_value: value, onChange: onChange }))}</div>
+		</>
+	);
 };
 
 export default RadioGroup;
