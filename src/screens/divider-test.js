@@ -59,7 +59,7 @@ const DividerTest = () => {
 					Right Margin
 				</Divider>
 			</div>
-			<div className="relative my-10 flex h-40 flex-col border border-black p-1">
+			<div className="relative my-10 flex h-80 flex-col border border-black p-1">
 				<div className="text-center">Vertical Line with text</div>
 				<div className="flex h-full flex-row border border-black">
 					<div>Vertical</div>
@@ -74,7 +74,7 @@ const DividerTest = () => {
 						textColor={"text-warning"}
 						vertical
 					>
-						Hello
+						Center
 					</Divider>
 					<div>Testing</div>
 					<div className="ml-4">Vertical</div>
@@ -84,7 +84,7 @@ const DividerTest = () => {
 						vertical
 						gap={5}
 					>
-						Hello
+						Center gap
 					</Divider>
 					<div>Testing</div>
 					<div className="ml-4">Vertical</div>
@@ -94,22 +94,67 @@ const DividerTest = () => {
 						vertical
 						textAlign="top"
 					>
-						Hello
+						Top
+					</Divider>
+					<div>Testing</div>
+					<div className="ml-4">Vertical</div>
+					<Divider
+						color="border-pink-300"
+						textColor={"text-warning"}
+						vertical
+						gap={10}
+						textAlign="top"
+					>
+						Top gap
 					</Divider>
 					<div>Testing</div>
 				</div>
-				{/* <div
-					className="flex flex-col items-center border border-black text-center"
-					style={{ gap: "0px" }}
-				>
-					<div
-						className="border-l-1 border-black"
-						style={{ height: "10px" }}
-					></div>
-					<div className="">Hello</div>
-					<div className="flex-1 border-l-1 border-black"></div>
+				<div className="my-4 flex h-full flex-row border border-black">
+					<div>Vertical</div>
+					<Divider
+						color="border-pink-300"
+						vertical
+						textAlign="bottom"
+						textColor="text-blue-400"
+					>
+						Bottom
+					</Divider>
+					<div>Testing</div>
+					<div className="ml-4">Vertical</div>
+					<Divider
+						color="border-pink-300"
+						textColor={"text-warning"}
+						vertical
+						gap={10}
+						textAlign={"bottom"}
+					>
+						Bottom Gap
+					</Divider>
+					<div>Testing</div>
+
+					<div className="ml-4">Vertical</div>
+					<Divider
+						color="border-pink-300"
+						textColor={"text-warning"}
+						vertical
+						textAlign="top"
+						marginTop={20}
+					>
+						Top Margin
+					</Divider>
+					<div>Testing</div>
+					<div className="ml-4">Vertical</div>
+					<Divider
+						color="border-pink-300"
+						textColor={"text-warning"}
+						vertical
+						textAlign="bottom"
+						marginBottom={20}
+					>
+						Bottom Margin
+					</Divider>
+					<div>Testing</div>
 				</div>
-				<div>test</div> */}
 			</div>
 		</>
 	);

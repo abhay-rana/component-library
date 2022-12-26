@@ -30,8 +30,9 @@ const App = () => {
 			{/* <ModalTest /> */}
 			{/* <FaqAccordion /> */}
 			{/* <SelectTest /> */}
-			<DividerTest />
-			{/* <TooltipTest /> */}
+			{/* <DividerTest /> */}
+
+			<TooltipTest />
 		</>
 	);
 };

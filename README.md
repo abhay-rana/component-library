@@ -97,4 +97,17 @@ like product card inside this component there can be many component which have t
 
 <!-- Select Option -->
 
+1-> cross platform select
+2-> material select
+3-> "required" props if you want the asterisk
+4-> "error"
+5-> "note"
+
 <!-- Divider -->
+
+1-> custom border color "color"
+2-> custom text color "textColor"
+3-> custom direction of the line default-> "horizontal", "vertical"
+4-> text can be at "top","center","bottom","left",
+5-> "gap" for the gaps between the line
+6-> "marginRight","marginLeft","marginTop","marginBottom"

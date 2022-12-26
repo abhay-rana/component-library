@@ -1,13 +1,15 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
-const Divider = ({ className, vertical, children, gap, textAlign, marginLeft, marginRight, color, textColor }) => {
+const Divider = ({ className, vertical, children, gap, textAlign, marginLeft, marginRight, color, textColor, marginTop, marginBottom }) => {
 	let extra_class = {
 		left: "",
 		right: "",
-		align: "",
+		top: "",
+		bottom: "",
 		gap: "",
 		marginLRTB: {},
+		width: "",
 		color: "",
 		textColor: "",
 		direction: "flex-row",
@@ -17,10 +19,10 @@ const Divider = ({ className, vertical, children, gap, textAlign, marginLeft, ma
 		extra_class.direction = "flex-col ";
 		extra_class.border = "border-l-1 ";
 	}
-	if (textAlign === "left") extra_class.left += `flex-none `;
-	if (textAlign === "right") extra_class.right += `flex-none `;
-	// if (textAlign === "top") extra_class.align = `flex-none `;
-	// if (textAlign === "bottom") extra_class.align = `flex-none `;
+	if (textAlign === "left") extra_class.left = `flex-none `;
+	if (textAlign === "right") extra_class.right = `flex-none `;
+	if (textAlign === "top") extra_class.top = `flex-none `;
+	if (textAlign === "bottom") extra_class.bottom = `flex-none `;
 	if (color) extra_class.color += color;
 	if (textColor) extra_class.textColor += textColor;
 
@@ -28,10 +30,10 @@ const Divider = ({ className, vertical, children, gap, textAlign, marginLeft, ma
 		extra_class.marginLRTB = { marginRight: `${gap}px` };
 	} else if (textAlign === "right" && gap && !marginRight) {
 		extra_class.marginLRTB = { marginLeft: `${gap}px` };
-	} else if (textAlign === "top" && gap && !marginRight) {
-		extra_class.marginLRTB = { marginTop: `${gap}px` };
-	} else if (textAlign === "bottom" && gap && !marginRight) {
+	} else if (textAlign === "top" && gap && !marginTop) {
 		extra_class.marginLRTB = { marginBottom: `${gap}px` };
+	} else if (textAlign === "bottom" && gap && !marginBottom) {
+		extra_class.marginLRTB = { marginTop: `${gap}px` };
 	}
 
 	if (textAlign && !marginLeft && !marginRight) {
@@ -47,8 +49,8 @@ const Divider = ({ className, vertical, children, gap, textAlign, marginLeft, ma
 				style={{ gap: `${extra_class.gap}px` }}
 			>
 				<div
-					className={twMerge(`flex-1 border-black`, extra_class.left, extra_class.color, extra_class.border)}
-					style={{ width: `${marginLeft}px` }}
+					className={twMerge(`flex-1 border-black`, extra_class.left, extra_class.top, extra_class.color, extra_class.border)}
+					style={{ width: `${marginLeft}px`, height: `${marginTop}px` }}
 				></div>
 
 				{children ? (
@@ -61,8 +63,8 @@ const Divider = ({ className, vertical, children, gap, textAlign, marginLeft, ma
 				) : null}
 
 				<div
-					className={twMerge(`flex-1 border-black`, extra_class.right, extra_class.color, extra_class.border)}
-					style={{ width: `${marginRight}px` }}
+					className={twMerge(`flex-1 border-black`, extra_class.right, extra_class.bottom, extra_class.color, extra_class.border)}
+					style={{ width: `${marginRight}px`, height: `${marginBottom}px` }}
 				></div>
 			</div>
 		</>
