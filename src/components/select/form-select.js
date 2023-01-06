@@ -54,7 +54,7 @@ const Select = memo((props) => {
 				<label
 					htmlFor={default_props.id}
 					className={twMerge(
-						`pointer-events-none  absolute top-2.5 left-1 z-[1]  block border border-black bg-transparent bg-white  px-2 text-sm text-slate-400 transition-all
+						`pointer-events-none  absolute top-2.5 left-1 z-[1]  block   bg-transparent bg-white  px-2 text-sm text-slate-400 transition-all
 		peer-valid:-top-2 peer-valid:left-3 peer-valid:text-xs  peer-focus:-top-2 peer-focus:left-3 peer-focus:text-xs peer-focus:text-primary `,
 						extra_class.label
 					)}
@@ -98,7 +98,7 @@ const Option = ({ children, label, ...props }) => {
 		<>
 			<option
 				{...props}
-				className="p-5 hover:bg-red-400  focus:bg-black"
+				// className="hover:bg-red-400 focus:bg-black"
 			>
 				{!!children ? children : label}
 			</option>
