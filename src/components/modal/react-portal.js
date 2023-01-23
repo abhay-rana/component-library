@@ -19,7 +19,7 @@ const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEsca
 			document.body.style.overflow = "hidden";
 		}
 		return () => {
-			// // Unsets Background Scrolling to use when SideDrawer/Modal is closed
+			// Unsets Background Scrolling to use when SideDrawer/Modal is closed
 			// if (scrollLock) document.body.style.overflow = "unset";
 		};
 	}, []);
@@ -39,8 +39,8 @@ const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEsca
 		//otherwise it will be run that event in the bubbling phase and in the bubbling phase it will work run this function which we dont want to run this initially at the time of click it will be fired only after the successfully mounting of the modal
 		//by default its value is "false"
 		return () => {
+			//removing the event listeners
 			if (!!wrapperElement) document.removeEventListener("click", handleClickOutside, true);
-			console.log("wrapper element delete", wrapperElement);
 		};
 	}, [wrapperElement]);
 
@@ -71,6 +71,7 @@ const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEsca
 
 		return () => {
 			// delete the programmatically created element
+			// this event listener fired when the animation is ended on the particular element
 			ref.current.modal_element.addEventListener("animationend", () => {
 				console.log("animation is ended so delete the node now from the node");
 				if (systemCreated && element.parentNode) {

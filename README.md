@@ -111,3 +111,41 @@ like product card inside this component there can be many component which have t
 4-> text can be at "top","center","bottom","left",
 5-> "gap" for the gaps between the line
 6-> "marginRight","marginLeft","marginTop","marginBottom"
+
+<!-- Tooltip (not completed) -->
+
+1-> open in the hover , open in the click
+2-> provide the color props
+3-> render the custom component
+4-> give the text props
+5-> automatically manages where to render the popup if there is nothing in down and the bottom prop is passed so it will render at the top
+6-> className for styling manage the color
+<Tooltip
+text="hello" className={""} primary warning danger renderComp={<CustomComponent/>} onHover onClick position={top,left,right,bottom,topLeft} opened={opened_state} color openDelay={200} closeDelay={400}>
+<Button>Hello Abhay</Button> //to render the custom tooltip
+</Tooltip>
+
+<!-- Dropdown(not completed) -->
+
+<!-- CustomSelect -->
+
+<!-- Tabs (not completed) -->
+
+<!-- Navbar (not completed) -->
+
+<!-- Drawer (not completed) -->
+
+<!-- Rating  -->
+
+<!-- Nanobar -->
+
+<!-- Image -->
+
+1-> avatar
+2-> fallback image
+3-> blur image/ progressive image
+4-> onError onSuccess
+
+<!-- Table -->
+
+<!-- Datepicker -->

@@ -6,10 +6,12 @@ import { AcademicCapIcon } from "@heroicons/react/24/outline";
 
 const SelectTest = () => {
 	const [selectState, setSelectState] = useState("");
+
 	const runThis = (e) => {
 		console.log(e.target.value);
 		setSelectState(e.target.value);
 	};
+
 	return (
 		<>
 			<div>SelectTest</div>
@@ -20,7 +22,7 @@ const SelectTest = () => {
 					required //for the asterisk sign
 					value={selectState} //default value
 					id="select gender"
-					onChange={(e) => runThis(e)}
+					onChange={(e) => runThis(e)} //onClick or enter the onChange function fires only
 					// error="Error Here"
 					// note="hello abhay"
 					// className="text-sm text-red-400"

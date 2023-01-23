@@ -10,10 +10,11 @@ import CheckboxTest from "screens/checkbox-test";
 import SwitchTest from "screens/switch-test";
 import RippleTest from "screens/ripple-test";
 import ModalTest from "screens/modal-test";
-import TooltipTest from "screens/tooltip-test";
 import FaqAccordion from "screens/faq-accordion";
 import SelectTest from "screens/select-test";
 import DividerTest from "screens/divider-test";
+import IconTest from "screens/icon-test";
+import TooltipTest from "screens/tooltip-test";
 
 const App = () => {
 	return (
@@ -31,7 +32,7 @@ const App = () => {
 			{/* <FaqAccordion /> */}
 			{/* <SelectTest /> */}
 			{/* <DividerTest /> */}
-
+			{/* <IconTest /> */}
 			<TooltipTest />
 		</>
 	);
