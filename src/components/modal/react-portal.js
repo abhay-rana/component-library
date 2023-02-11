@@ -2,11 +2,8 @@ import { useState, useLayoutEffect, useEffect, forwardRef } from "react";
 import { createPortal } from "react-dom";
 
 //create the node-element and append to the body as the sibling of the "root" node
-function createWrapperAndAppendToBody(wrapperId) {
-	const wrapperElement = document.createElement("div");
-	wrapperElement.setAttribute("id", wrapperId);
-	document.body.appendChild(wrapperElement);
-	return wrapperElement;
+function createWrapperAndAppendToBody(children) {
+	return children;
 }
 
 const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEscapeKey, handleClose = () => {}, onClose, clickOutsideClose, scrollLock }, ref) => {
@@ -19,7 +16,7 @@ const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEsca
 			document.body.style.overflow = "hidden";
 		}
 		return () => {
-			// Unsets Background Scrolling to use when SideDrawer/Modal is closed
+			// Unset Background Scrolling to use when SideDrawer/Modal is closed
 			// if (scrollLock) document.body.style.overflow = "unset";
 		};
 	}, []);
@@ -27,7 +24,7 @@ const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEsca
 	//closing of the modal on the outside click
 	useEffect(() => {
 		const handleClickOutside = (e) => {
-			if (wrapperElement.contains(e.target)) {
+			if (e.target.id !== wrapperId) {
 				console.log("clicks inside");
 			} else {
 				console.log("click outside");
@@ -64,20 +61,18 @@ const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEsca
 		// create and append to body
 		if (!element) {
 			systemCreated = true;
-			element = createWrapperAndAppendToBody(wrapperId);
+			element = createWrapperAndAppendToBody(children);
 		}
 		setWrapperElement(element);
+
 		ref.current["modal_element"] = element;
 
 		return () => {
-			// delete the programmatically created element
-			// this event listener fired when the animation is ended on the particular element
-			ref.current.modal_element.addEventListener("animationend", () => {
-				console.log("animation is ended so delete the node now from the node");
-				if (systemCreated && element.parentNode) {
-					element.parentNode.removeChild(element);
-				}
-			});
+			// delete the complete DOM node on the unmounting
+			if (systemCreated && element.parentNode) {
+				console.log("delete the node on unmounting");
+				element.parentNode.removeChild(element);
+			}
 		};
 	}, [wrapperId]);
 
@@ -85,6 +80,7 @@ const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEsca
 	useEffect(() => {
 		//this return function fires at the very end of the unmounting
 		return () => {
+			handleClose();
 			if (typeof onClose === "function") onClose(); //on unmounting run this function if a user specified
 		};
 	}, []);
@@ -92,6 +88,6 @@ const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEsca
 	// wrapperElement state will be null on very first render.
 	if (wrapperElement === null) return null;
 
-	return createPortal(children, wrapperElement);
+	return createPortal(children, document.body);
 };
 export default forwardRef(ReactPortal);
