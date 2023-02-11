@@ -1,11 +1,12 @@
 import React, { memo, useRef } from "react";
+import PropTypes from "prop-types";
 
 import { useModalState, useModalUpdater } from "provider/portal-provider";
 
 import ReactPortal from "components/modal/react-portal";
 import Transition from "components/common/transition";
 
-const Modal = ({ children, id, closeOnEscapeKey, closeButton, onClose, clickOutsideClose = false, scrollLock = true }) => {
+const Modal = ({ children, id, closeOnEscapeKey, closeButton, onClose, clickOutsideClose, scrollLock }) => {
 	const { modal } = useModalState(); //portal_component is a kind of a state of the modal_id (give the current modal on the dom )
 	const { toggleModal } = useModalUpdater(); //toggle the state of the modal to hide and show
 	const modal_ref = useRef({}); //get the dom element of the modal
@@ -41,12 +42,12 @@ const Modal = ({ children, id, closeOnEscapeKey, closeButton, onClose, clickOuts
 						className="fixed top-0 left-0 right-0 bottom-0 flex h-screen w-screen flex-row items-center justify-center"
 						id={id}
 					>
-						<div className="relative flex flex-row border border-black bg-white p-2">
+						<div className="relative flex flex-row gap-1 bg-white p-2">
 							{children}
 							{closeButton ? (
 								<button
 									onClick={handleClose}
-									className="self-start border border-red-400"
+									className="self-start"
 								>
 									X
 								</button>
@@ -57,6 +58,26 @@ const Modal = ({ children, id, closeOnEscapeKey, closeButton, onClose, clickOuts
 			</Transition>
 		</React.Fragment>
 	);
+};
+
+Modal.defaultProps = {
+	onClose: () => {},
+	closeOnEscapeKey: false,
+	closeButton: false,
+	scrollLock: true,
+	clickOutsideClose: true,
+};
+
+Modal.propTypes = {
+	/**"children":for the data show inside the modal */
+	children: PropTypes.element.isRequired,
+	/**"id":required for the uniquely identifying the modal */
+	id: PropTypes.string.isRequired,
+	closeOnEscapeKey: PropTypes.bool.isRequired,
+	closeButton: PropTypes.bool.isRequired,
+	onClose: PropTypes.func.isRequired,
+	clickOutsideClose: PropTypes.bool.isRequired,
+	scrollLock: PropTypes.bool.isRequired,
 };
 
 export default memo(Modal);
