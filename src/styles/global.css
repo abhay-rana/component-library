@@ -1,118 +1,133 @@
+/* "base": for resetting the css and style the native elements */
 @tailwind base;
+/* "components": for style your own custom classes */
 @tailwind components;
+/* "utilities": for styling of the classes provided by the tailwind */
 @tailwind utilities;
 
-/* always set this like this html and body element */
+@layer components {
+	/* always set this like this html and body element */
+	html,
+	body {
+		background-color: #f2f7f9;
+		font-family: "Poppins", sans-serif;
+		min-height: 100vh;
+		width: 100%;
+	}
 
-html,
-body {
-	background-color: #f2f7f9;
-	font-family: "Poppins", sans-serif;
-	min-height: 100vh;
-	width: 100%;
+	#root {
+		height: 100vh;
+		width: 100%;
+	}
+	/* min-height is not inherited by the child  so we have replace the min-height by the height property */
 }
 
-#root {
-	height: 100vh;
-	width: 100%;
-}
+@layer base {
+	h1 {
+		@apply text-3xl font-bold;
+	}
 
-/* min-height is not inherited by the child  so we have replace the min-height by the height property */
-
-/* Ripple Animation */
-.custom_btn {
-	position: relative;
-	overflow: hidden;
-	transition: background 400ms;
-	color: #fff;
-	background-color: #6200ee;
-	padding: 1rem 2rem;
-	font-family: "Roboto", sans-serif;
-	font-size: 1.5rem;
-	outline: 0;
-	border: 0;
-
-	border-radius: 0.25rem;
-	box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3); /* black with 30% opacity */
-	cursor: pointer;
-}
-
-span.custom_ripple {
-	position: absolute;
-	border-radius: 50%;
-
-	transform: translate(-50%, -50%) scale(0);
-	animation: ripple_animation 1000ms linear;
-	background-color: rgba(255, 255, 255, 0.7);
-}
-
-@keyframes ripple_animation {
-	to {
-		transform: translate(-50%, -50%) scale(4);
-		opacity: 0;
+	a {
+		@apply text-blue-600 underline decoration-wavy underline-offset-2 transition hover:text-red-500;
 	}
 }
 
-/* Transition Animations */
+@layer components {
+	/* Ripple Animation */
+	.custom_btn {
+		position: relative;
+		overflow: hidden;
+		transition: background 400ms;
+		color: #fff;
+		background-color: #6200ee;
+		padding: 1rem 2rem;
+		font-family: "Roboto", sans-serif;
+		font-size: 1.5rem;
+		outline: 0;
+		border: 0;
 
-.custom_fade-in-animation {
-	animation-name: fadeIn;
-	animation-duration: 300ms;
-	transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-	animation-fill-mode: forwards;
-}
-
-.custom_fade-out-animation {
-	animation-name: fadeOut;
-	animation-duration: 25ms;
-	transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
+		border-radius: 0.25rem;
+		box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3); /* black with 30% opacity */
+		cursor: pointer;
 	}
-	100% {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: #00000073;
-		opacity: 1;
-	}
-}
 
-@keyframes fadeOut {
-	0% {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		opacity: 1;
-		background-color: #00000073;
-	}
-	100% {
-		opacity: 0;
-	}
-}
-/* Transitions Animations End */
+	span.custom_ripple {
+		position: absolute;
+		border-radius: 50%;
 
-/* Wave Box Shadow Css */
-.custom_shadow_hover:hover {
-	background-color: rgba(0, 0, 0, 0.1);
-}
-
-.custom_shadow_click {
-	animation-name: wave_shadow;
-	animation-duration: 500ms;
-}
-
-@keyframes wave_shadow {
-	0% {
-		box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.1);
+		transform: translate(-50%, -50%) scale(0);
+		animation: ripple_animation 1000ms linear;
+		background-color: rgba(255, 255, 255, 0.7);
 	}
-	100% {
-		box-shadow: 0px 0px 2px 5px rgba(0, 0, 0, 0.2);
+
+	@keyframes ripple_animation {
+		to {
+			transform: translate(-50%, -50%) scale(4);
+			opacity: 0;
+		}
+	}
+
+	/* Transition Animations */
+
+	.custom_fade-in-animation {
+		animation-name: fadeIn;
+		animation-duration: 300ms;
+		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+		animation-fill-mode: forwards;
+	}
+
+	.custom_fade-out-animation {
+		animation-name: fadeOut;
+		animation-duration: 25ms;
+		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #00000073;
+			opacity: 1;
+		}
+	}
+
+	@keyframes fadeOut {
+		0% {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			opacity: 1;
+			background-color: #00000073;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+	/* Transitions Animations End */
+
+	/* Wave Box Shadow Css */
+	.custom_shadow_hover:hover {
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+
+	.custom_shadow_click {
+		animation-name: wave_shadow;
+		animation-duration: 500ms;
+	}
+
+	@keyframes wave_shadow {
+		0% {
+			box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.1);
+		}
+		100% {
+			box-shadow: 0px 0px 2px 5px rgba(0, 0, 0, 0.2);
+		}
 	}
 }
