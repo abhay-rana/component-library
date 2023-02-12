@@ -19,11 +19,7 @@ module.exports = {
 					DEFAULT: "#3c4858",
 					medium: "#818181",
 					light: "#b7b7b7",
-					lightest: " #F3F3F3",
-				},
-				custom: {
-					background: "#F2F7F9",
-					foreground: "var(--foreground)",
+					lightest: "#f2f2f3",
 				},
 				filled: {},
 			},

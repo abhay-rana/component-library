@@ -23,7 +23,7 @@ const App = () => {
 		<>
 			{/* <FloatingLabel /> */}
 			{/* <NormalLabel />  */}
-			{/* <ButtonTest /> */}
+
 			{/* <SpinnerTest /> */}
 			{/* <TextAreaTest /> */}
 			{/* <RadioTest /> */}
@@ -31,7 +31,7 @@ const App = () => {
 			{/* <SwitchTest /> */}
 			{/* <RippleTest /> */}
 
-			<ModalTest />
+			{/* <ModalTest /> */}
 			{/* <FaqAccordion /> */}
 			{/* <SelectTest /> */}
 			{/* <DividerTest /> */}
