@@ -1,4 +1,4 @@
-<!-- React Context Portal Modal -->
+// React Context Portal Modal
 
 -   use of context api hook in a optimized manner
 -   we have two hooks for this modal one is for toggling the modal in open or close state => useModalUpdater()

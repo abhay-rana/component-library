@@ -3,7 +3,7 @@ module.exports = {
 	darkMode: "class", //dark mode is apply when there is change in the root class
 	theme: {
 		fontFamily: {
-			custom: ["Poppins", "sans-serif"] //font links should be at the index.html scripts
+			custom: ["Poppins", "sans-serif"], //font links should be at the index.html scripts
 		},
 		extend: {
 			colors: {
@@ -19,24 +19,24 @@ module.exports = {
 					DEFAULT: "#3c4858",
 					medium: "#818181",
 					light: "#b7b7b7",
-					lightest: " #F3F3F3"
+					lightest: " #F3F3F3",
 				},
 				custom: {
 					background: "#F2F7F9",
-					foreground: "var(--foreground)"
+					foreground: "var(--foreground)",
 				},
-				filled: {}
+				filled: {},
 			},
 			padding: {
 				5: "1rem",
-				15: "2rem"
+				15: "2rem",
 			},
 			borderWidth: {
 				DEFAULT: "1px",
 				0: "0px",
-				1: "1px"
-			}
-		}
+				1: "1px",
+			},
+		},
 	},
-	plugins: []
+	plugins: [],
 };

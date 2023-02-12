@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import ButtonTest from "screens/button-test";
 import NormalLabel from "screens/normal-label";
@@ -15,6 +15,8 @@ import SelectTest from "screens/select-test";
 import DividerTest from "screens/divider-test";
 import IconTest from "screens/icon-test";
 import TooltipTest from "screens/tooltip-test";
+import TestMod from "testing/test-mod";
+import Transition from "components/common/transition";
 
 const App = () => {
 	return (
@@ -28,12 +30,13 @@ const App = () => {
 			{/* <CheckboxTest /> */}
 			{/* <SwitchTest /> */}
 			{/* <RippleTest /> */}
-			{/* <ModalTest /> */}
+
+			<ModalTest />
 			{/* <FaqAccordion /> */}
 			{/* <SelectTest /> */}
 			{/* <DividerTest /> */}
 			{/* <IconTest /> */}
-			<TooltipTest />
+			{/* <TooltipTest /> */}
 		</>
 	);
 };

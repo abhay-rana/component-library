@@ -1,10 +1,10 @@
-
 {
-    "compilerOptions": {
-      "baseUrl": "src",
-      "module": "commonjs",
-      "target": "es6"
-    },
-    "include": ["src"],
-    "exclude": ["node_modules"]
+	"compilerOptions": {
+		"baseUrl": "src",
+		"types": ["node", "lodash", "express"],
+		"module": "commonjs",
+		"target": "es6"
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
 }
