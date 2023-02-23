@@ -153,6 +153,29 @@ const ButtonTest = () => {
 							</div>
 						</div>
 					</div>
+					<div className="flex flex-col">
+						<div>Icons Set</div>
+						<Button
+							iconLeft={
+								<Download
+									width={18}
+									fill={"red"}
+									onClick={() => console.log("children is clicked")}
+								/>
+							}
+							primary
+							className="w-[140px] rounded-lg"
+						>
+							Icon Left
+						</Button>
+						<Button
+							primary
+							className="m-2 w-[140px]"
+						>
+							primary
+						</Button>
+						<div className="m-2 flex h-8 w-[140px] items-center justify-center rounded-md bg-green-400">primary</div>
+					</div>
 				</div>
 			</div>
 		</>

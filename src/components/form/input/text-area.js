@@ -1,4 +1,4 @@
-import { forwardRef, memo, useRef, useLayoutEffect, useEffect } from "react";
+import { forwardRef, memo, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { twMerge } from "tailwind-merge";
 

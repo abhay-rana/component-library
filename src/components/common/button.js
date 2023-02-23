@@ -1,8 +1,8 @@
 import { forwardRef, memo } from "react";
 import PropTypes from "prop-types";
+import { twMerge } from "tailwind-merge";
 
 import Spinner from "../common/spinner";
-import { twMerge } from "tailwind-merge";
 
 const Button = memo(
 	forwardRef(
@@ -29,13 +29,15 @@ const Button = memo(
 				ripple,
 				controlRef,
 				block,
-				noUpperCase,
+				upperCase,
+				rounded,
+				iconLeft,
 			},
 			ref
 		) => {
 			const isDisabled = loader ? true : disabled ? true : false;
-			let extraClass = "round-none inline-flex items-center justify-center relative focus:outline-none";
-			if (!noUpperCase) {
+			let extraClass = "round-none flex items-center justify-center relative focus:outline-none rounded-lg";
+			if (!!upperCase) {
 				extraClass += " uppercase";
 			}
 			if (micro) {
@@ -105,12 +107,16 @@ const Button = memo(
 			} else {
 				extraClass += " block";
 			}
-			if (className) {
-				extraClass += ` ${className}`;
-			}
 			if (disabled) {
 				extraClass += " opacity-50 cursor-not-allowed";
 			}
+			if (rounded) {
+				extraClass += " rounded-full";
+			}
+			if (className) {
+				extraClass += ` ${className}`;
+			}
+
 			return (
 				<button
 					onClick={onClick || null}
@@ -120,7 +126,7 @@ const Button = memo(
 					title={tooltip}
 					style={{ position: loader ? "relative" : "", ...(style || {}) }}
 				>
-					<div className="flex flex-row justify-center">
+					<div className="flex flex-row items-center justify-center text-center">
 						{children}
 						{!loader ? null : micro ? (
 							<Spinner

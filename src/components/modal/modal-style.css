@@ -1,0 +1,48 @@
+@tailwind components;
+
+@layer components {
+    /* Transition Animations */
+
+    .custom_fade-in-animation {
+        animation-name: fadeIn;
+        animation-duration: 300ms;
+        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+        animation-fill-mode: forwards;
+    }
+
+    .custom_fade-out-animation {
+        animation-name: fadeOut;
+        animation-duration: 25ms;
+        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #00000073;
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        0% {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+            background-color: #00000073;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    /* Transitions Animations End */
+}
