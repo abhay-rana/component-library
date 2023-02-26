@@ -30,9 +30,9 @@ const App = () => {
             {/* <RadioTest /> */}
             {/* <CheckboxTest /> */}
             {/* <SwitchTest /> */}
-            {/* <RippleTest /> */}
+            <RippleTest />
             {/* <ModalTest /> */}
-            <NewButtonTest />
+            {/* <NewButtonTest /> */}
             {/* <FaqAccordion /> */}
             {/* <SelectTest /> */}
             {/* <DividerTest /> */}

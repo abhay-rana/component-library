@@ -1,51 +1,70 @@
-import React from "react";
-import { twMerge } from "tailwind-merge";
+import React from 'react';
+import { twMerge } from 'tailwind-merge';
 
-const RippleEffect = ({ type, id, className, ripple, onClick, style, children }) => {
-	function createRipple(event) {
-		// if clicked happened on the card element not in there child component
-		//if clicked on the child component so don't propagate the event bubbling
-		if (event.target === event.currentTarget || event.target.classList.contains("custom_ripple")) {
-			const button = event.currentTarget;
+const RippleEffect = ({
+    type,
+    id,
+    className,
+    ripple,
+    onClick,
+    style,
+    children,
+    icon_button = false,
+    loader = false,
+    disabled = false,
+}) => {
+    function createRipple(event) {
+        if (loader || disabled) return;
 
-			// creating the span element directly
-			const circle = document.createElement("span");
-			const diameter = Math.max(button.clientWidth, button.clientHeight);
+        const button = event.currentTarget;
 
-			// get the position of the click with respect to the button element
-			circle.style.width = circle.style.height = `${diameter / 2}px`;
-			circle.style.left = `${event.clientX - button.offsetLeft}px`;
-			circle.style.top = `${event.clientY - button.offsetTop}px`;
+        // creating the span element directly
+        const circle = document.createElement('span');
+        const diameter = Math.max(button.clientWidth, button.clientHeight);
 
-			//adding the ripple animation class
-			circle.classList.add("custom_ripple");
+        if (!icon_button) {
+            // get the position of the click with respect to the button element
+            circle.style.width = circle.style.height = `${diameter / 2}px`;
+            circle.style.left = `${event.clientX - button.offsetLeft}px`;
+            circle.style.top = `${event.clientY - button.offsetTop}px`;
+        } else {
+            //if this is icon_button so the ripple always start from the center of the element
+            const client_rect = button.getBoundingClientRect();
 
-			const ripple = button.getElementsByClassName("custom_ripple")[0];
+            circle.style.height = `${client_rect.height}px`;
+            circle.style.width = `${client_rect.width}px`;
+            circle.style.left = `${client_rect.width / 2}px`;
+            circle.style.top = `${client_rect.height / 2}px`;
+        }
 
-			//remove the span ripple is there is already there so we start the animation from the beginning
-			if (ripple) {
-				ripple.remove();
-			}
+        //adding the ripple animation class
+        circle.classList.add('custom_ripple');
 
-			//append the span ripple in the DOM
-			button.appendChild(circle);
+        const ripple = button.getElementsByClassName('custom_ripple')[0];
 
-			// perform the onClick callback function
-			onClick && onClick(event);
-		}
-	}
+        //remove the span ripple is there is already there so we start the animation from the beginning
+        if (ripple) {
+            ripple.remove();
+        }
 
-	return (
-		<>
-			<div
-				type="button"
-				className={twMerge("custom_btn", className)}
-				onClick={createRipple}
-			>
-				<span className="">{children}</span>
-			</div>
-		</>
-	);
+        //append the span ripple in the DOM
+        button.appendChild(circle);
+
+        // perform the onClick callback function
+        onClick && onClick(event);
+    }
+
+    return (
+        <>
+            <div
+                type="button"
+                className={twMerge('custom_btn', className)}
+                onClick={createRipple}
+            >
+                {children}
+            </div>
+        </>
+    );
 };
 
 export default RippleEffect;
