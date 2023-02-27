@@ -31,52 +31,64 @@ const MaterialButton = (props, ref) => {
     } = props;
 
     // Apply the styling on the basis of the props
-    let extra_class =
-        'h-8 bg-primary w-36 px-3 cursor-pointer rounded-lg text-white select-none';
+    let extra_class = {
+        dimensions: ' h-9 w-36 rounded-lg',
+        normal: ' bg-primary px-3 cursor-pointer text-white select-none',
+    };
 
     let icon_btn_class = '';
 
     if (small) {
-        extra_class += ' w-28 px-1';
+        extra_class.dimensions += ' w-28';
+        extra_class.normal += ' px-1';
     } else if (large) {
-        extra_class += ' w-44 h-12 text-lg font-medium';
+        extra_class.dimensions += ' w-44 h-11 ';
+        extra_class.normal += ` text-lg font-medium`;
     }
 
     if (text) {
-        extra_class += ` bg-transparent text-blaCK`;
+        extra_class.normal += ` bg-transparent text-blaCK`;
     } else if (outlined) {
-        extra_class += ` bg-transparent border border-black text-black`;
+        extra_class.normal += ` bg-transparent border border-black text-black`;
     }
 
     if (loader) {
-        extra_class +=
+        extra_class.normal +=
             ' cursor-wait opacity-50 hover:opacity-50 active:opacity-50 ';
     }
 
     if (block) {
-        extra_class += ' w-full';
+        extra_class.dimensions += ' w-full';
     }
 
     if (disabled && !loader) {
-        extra_class += ` cursor-not-allowed opacity-50 hover:opacity-50 active:opacity-50 `;
+        extra_class.normal += ` cursor-not-allowed opacity-50 hover:opacity-50 active:opacity-50 `;
+    }
+
+    if (icon_button) {
+        extra_class.dimensions = ' h-8 w-8 rounded-full';
     }
 
     if (className) {
-        extra_class += ' ' + className;
+        extra_class.normal += ' ' + className;
         icon_btn_class += ' ' + className;
     }
 
     // end
 
     return (
-        <RippleEffect icon_button={!!icon_button} {...{ loader, disabled }}>
+        <RippleEffect
+            icon_button={!!icon_button}
+            {...{ loader, disabled }}
+            dimension={extra_class.dimensions}
+        >
             {!icon_button ? (
                 <div
                     className={twMerge(
-                        `flex flex-row items-center gap-1`,
+                        `flex h-full flex-row items-center gap-1`,
                         `transition-all duration-300`,
-                        `hover:opacity-90 hover:shadow-xl`,
-                        ` ${extra_class}`
+                        `hover:opacity-100 hover:shadow-xl `,
+                        `${extra_class.normal}`
                     )}
                 >
                     <div

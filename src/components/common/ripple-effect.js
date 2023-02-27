@@ -5,6 +5,7 @@ const RippleEffect = ({
     type,
     id,
     className,
+    dimension,
     ripple,
     onClick,
     style,
@@ -58,7 +59,7 @@ const RippleEffect = ({
         <>
             <div
                 type="button"
-                className={twMerge('custom_btn', className)}
+                className={twMerge('custom_btn', className, dimension)}
                 onClick={createRipple}
             >
                 {children}
