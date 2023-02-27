@@ -16,13 +16,16 @@ const MaterialButton = (props, ref) => {
         icon_right,
         icon_left,
         icon_button = false,
-        className,
         small,
         large,
         medium = true,
         block,
+        className,
+        warning = false,
+        danger = false,
+        primary = true,
         contained = true,
-        text,
+        text = false,
         outlined,
         loader = false,
         disabled = default_props.disabled,
@@ -34,7 +37,7 @@ const MaterialButton = (props, ref) => {
     // Apply the styling on the basis of the props
     let extra_class = {
         dimensions: ' h-9 w-36 rounded-lg',
-        normal: ' bg-primary px-3 cursor-pointer text-white select-none',
+        normal: ' px-3 cursor-pointer text-white select-none',
     };
 
     let icon_btn_class = '';
@@ -50,7 +53,8 @@ const MaterialButton = (props, ref) => {
     if (text) {
         extra_class.normal += ` bg-transparent text-blaCK`;
     } else if (outlined) {
-        extra_class.normal += ` bg-transparent border border-black text-black`;
+        extra_class.normal += `  bg-transparent text-black`;
+        extra_class.dimensions += ` border-1 border-black`;
     }
 
     if (loader) {
@@ -68,6 +72,14 @@ const MaterialButton = (props, ref) => {
 
     if (icon_button) {
         extra_class.dimensions = ' h-8 w-8 rounded-full';
+    }
+
+    if (primary && !text && !outlined && !warning && !danger) {
+        extra_class.normal += ` bg-primary`;
+    } else if (warning) {
+        extra_class.normal += ` bg-warning`;
+    } else if (danger) {
+        extra_class.normal += ` bg-danger`;
     }
 
     if (className) {

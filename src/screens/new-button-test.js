@@ -28,26 +28,46 @@ const NewButtonTest = () => {
                         <div>Variant</div>
                     </div>
                     <div className="flex flex-1 flex-col gap-4 border border-red-400">
+                        <MaterialButton text>text</MaterialButton>
+                        <MaterialButton outlined>Outlined</MaterialButton>
+                        <MaterialButton warning>Warning</MaterialButton>
+                        <MaterialButton danger>Danger</MaterialButton>
+
+                        <MaterialButton small>Small</MaterialButton>
+                        <MaterialButton medium>Medium</MaterialButton>
+                        <MaterialButton large>Large</MaterialButton>
+                        <MaterialButton block small>
+                            Block
+                        </MaterialButton>
                         <MaterialButton
                             ref={reference}
                             icon_left={<BellAlertIcon className="" />}
                             icon_right={<AcademicCapIcon />}
                             loader
-                            label="data"
+                            label="loader"
                             className="bg-red-400"
                             large
                             onClick={() => console.log('abhay')}
-                            // disabled
                         />
                         <MaterialButton
                             ref={reference}
-                            // icon_left={<BellAlertIcon className="" />}
-                            // icon_right={<AcademicCapIcon />}
-                            // loader
-                            // label="data"
+                            icon_left={<BellAlertIcon className="" />}
+                            icon_right={<AcademicCapIcon />}
+                            label="disabled"
                             className="bg-red-400"
-                            // large
+                            large
                             onClick={() => console.log('abhay')}
+                            disabled
+                        />
+                        <MaterialButton
+                            ref={reference}
+                            onClick={() => console.log('abhay')}
+                            icon_button={<AcademicCapIcon />}
+                        />
+                        <MaterialButton
+                            ref={reference}
+                            onClick={() => console.log('abhay')}
+                            className="bg-red-400"
                             icon_button={<AcademicCapIcon />}
                         />
                     </div>
