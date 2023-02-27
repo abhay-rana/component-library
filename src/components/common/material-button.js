@@ -1,5 +1,6 @@
 import React, { memo, forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
+import PropTypes from 'prop-types';
 
 import Spinner from './spinner';
 import RippleEffect from './ripple-effect';
@@ -123,3 +124,34 @@ const MaterialButton = (props, ref) => {
 };
 
 export default memo(forwardRef(MaterialButton));
+
+MaterialButton.propTypes = {
+    /** True make loader visible  */
+    loader: PropTypes.bool,
+    /** True disabled button  */
+    disabled: PropTypes.bool,
+    /** Extra class for button  */
+    className: PropTypes.string,
+    /** Primary make button with main color  */
+    primary: PropTypes.bool,
+    /** warning make button orange type  */
+    warning: PropTypes.bool,
+    /** true make error type button  */
+    danger: PropTypes.bool,
+    block: PropTypes.bool,
+
+    small: PropTypes.bool,
+    /** True make large button default is medium  */
+    large: PropTypes.bool,
+    /** inline style object  */
+    style: PropTypes.object,
+    /** onClick accept function  */
+    onClick: PropTypes.func,
+    /** toolTip string type show tooltip  */
+    tooltip: PropTypes.string,
+    icon_right: PropTypes.element,
+    icon_button: PropTypes.element,
+    icon_left: PropTypes.element,
+    label: PropTypes.string,
+    text: PropTypes.bool,
+};
