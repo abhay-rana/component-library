@@ -22,6 +22,7 @@
 4-> closeOnEscapeKey (Boolean) (default -> false) //if you want to close the modal on the "escape" key
 5-> clickOutsideClose (Boolean) (default -> false) //if you want to close the modal on the click of the outside
 6-> scrollLock (Boolean) (default->true) //if you want dont want to scrolling of the background (body)
+7-> show_modal (Boolean) (default->false) //if you want to handle the modal visibility by the state
 
 //if there is the onClose prop is passed to the <Modal onClose={}> component so it will fire every time as the modal is closed by the
 escape button , cross button , outside clicks or programmatically close of the modal (by the Modal.hide("id"))

@@ -1,17 +1,6 @@
 import React, { memo, useEffect, useLayoutEffect, useState } from "react";
 import { createPortal } from "react-dom";
-/* 
-manages where to render the position of the tooltip
-check the position is available or not before the rendering of the tooltip
-close the tooltip if opened by the onClick by the click outside of the tooltip except on the tooltip
-*/
-
-/* 
-const trigger_comp=get the space and position acquired by the trigger component 
-const tooltip_comp=get the space acquired by the tooltip component it can be custom-tooltip or default-tooltip component 
-if(trigger_comp<tooltip_comp)  render the tooltip on the basis on the preferences (top,right,bottom,left)
-else render the tooltip on the basis of the component position provided by the user 
- */
+import PropTypes from "prop-types";
 
 const Tooltip = memo(({ children, ...props }) => {
 	const [open_tooltip, setOpenTooltip] = useState(false);
@@ -26,13 +15,14 @@ const Tooltip = memo(({ children, ...props }) => {
 	return (
 		<>
 			<div
-				className="relative w-full border-1 border-red-700"
+				className="relative w-full"
 				onMouseEnter={() => onMouseHoverComponent("enter_hover")}
 				onMouseLeave={() => onMouseHoverComponent("leave_hover")}
 			>
 				{React.Children.map(children, (child) => React.cloneElement(child, { id: "trigger_tooltip" }))}
 
 				{/* renders the createTooltip on the hovering of the main component div and you can delete this element also on the onMouseLeave */}
+
 				{open_tooltip ? <CreateTooltip children={selectComponent()} /> : null}
 			</div>
 		</>
@@ -41,31 +31,50 @@ const Tooltip = memo(({ children, ...props }) => {
 	//
 });
 
-const renderTooltipAtPosition = (pos) => {
-	let position;
+const _renderTooltipAtPosition = (pos, offset) => {
+	const position = [];
 	const trigger_comp_coordinates = document.getElementById("trigger_tooltip").getBoundingClientRect();
-	console.log({ trigger_comp_coordinates });
 	const tooltip_comp_coordinated = document.getElementById("tooltip-portals").getBoundingClientRect();
+
+	if (trigger_comp_coordinates.top > tooltip_comp_coordinated.height) position.push("top");
+	if (window.innerWidth - trigger_comp_coordinates.right > tooltip_comp_coordinated.width) position.push("right");
+	if (window.innerHeight - trigger_comp_coordinates.bottom > tooltip_comp_coordinated.height) position.push("bottom");
+	if (tooltip_comp_coordinated.x > tooltip_comp_coordinated.width) position.push("left");
+
+	const pos_offset = {
+		top: trigger_comp_coordinates.top,
+		right: trigger_comp_coordinates.right,
+		left: trigger_comp_coordinates.left,
+		bottom: trigger_comp_coordinates.bottom,
+	};
+
+	console.log({ trigger_comp_coordinates });
 	console.log({ tooltip_comp_coordinated });
-	if (trigger_comp_coordinates.top > tooltip_comp_coordinated.height) position = "top";
-	else if (window.innerWidth - trigger_comp_coordinates.right > tooltip_comp_coordinated.width) position = "right";
-	else if (window.innerWidth - trigger_comp_coordinates.left > tooltip_comp_coordinated.width) position = "left";
-	else if (window.innerHeight - trigger_comp_coordinates.bottom > tooltip_comp_coordinated.height) position = "bottom";
-	console.log(position);
-	return position;
+
+	if (position.indexOf(pos) > -1) return pos_offset[pos]; //if the position can be render from the user position
+	return pos_offset[position[0]]; //if the user_position is cant be render so render from the position array
 };
 
 // render this component as a tooltip
-const DefaultTooltip = (props) => {
+const DefaultTooltip = ({ position, color, offset, ...props }) => {
+	const [positions, setposition] = useState(0);
 	useEffect(() => {
-		renderTooltipAtPosition("");
+		_renderTooltipAtPosition(position, offset);
 	}, []);
 
 	return (
 		<>
 			<div
-				style={{ color: props.color }}
+				id="tooltip-portals"
 				className="absolute left-0 top-0" //absolute to the body element
+				style={{
+					textAlign: "center",
+					color: color,
+					position: "absolute",
+					left: 0,
+					// right: `${pos.right}`,
+					// top: `${pos.top}`,
+				}}
 			>
 				<div className="">{props.text}</div>
 			</div>
@@ -83,26 +92,24 @@ const CustomTooltip = ({ customTooltip }) => {
 	);
 };
 
-const CreateTooltip = ({ children, id = "tooltip-portals" }) => {
-	//create the node-element and append to the body as the sibling of the "root" node
-	function createWrapperAndAppendToBody(wrapperId) {
-		const wrapperElement = document.createElement("div");
-		wrapperElement.setAttribute("id", wrapperId);
-		// wrapperElement.setAttribute("style", "position: absolute; top: 0; left: 0;");
-		document.body.appendChild(wrapperElement);
-		return wrapperElement;
-	}
-
-	useLayoutEffect(() => {
-		console.log("create tooltip");
-
-		return () => {
-			const element = document.getElementById(id);
-			if (!!element) element.parentNode.removeChild(element);
-			console.log("remove tooltip");
-		};
-	}, []);
-
-	return createPortal(children, createWrapperAndAppendToBody(id));
+const CreateTooltip = ({ children }) => {
+	return createPortal(children, document.body);
 };
 export default Tooltip;
+
+Tooltip.displayName = "Tooltip";
+
+Tooltip.propTypes = {
+	color: PropTypes.string,
+	className: PropTypes.string,
+	customTooltip: PropTypes.element,
+	opened: PropTypes.bool,
+	text: function (props, propsName, component) {
+		if (!props["customComponent"] && typeof props[propsName] !== "string") {
+			return new Error(`Please provide a text props as a string to the ${component}`);
+		}
+	},
+	position: PropTypes.string,
+	openDelay: PropTypes.number,
+	closeDelay: PropTypes.number.isRequired,
+};
