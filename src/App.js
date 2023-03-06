@@ -18,7 +18,8 @@ import React, { useEffect, useState } from 'react';
 // import TestMod from 'testing/test-mod';
 // import Transition from 'components/common/transition';
 // import NewButtonTest from 'screens/new-button-test';
-import SkeletonTest from 'screens/skeleton-test';
+// import SkeletonTest from 'screens/skeleton-test';
+import ChipTest from 'screens/chip-test';
 
 const App = () => {
     return (
@@ -39,7 +40,8 @@ const App = () => {
             {/* <DividerTest /> */}
             {/* <IconTest /> */}
             {/* <TooltipTest /> */}
-            <SkeletonTest />
+            {/* <SkeletonTest /> */}
+            <ChipTest />
         </>
     );
 };

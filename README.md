@@ -150,3 +150,7 @@ text="hello" className={""} primary warning danger renderComp={<CustomComponent/
 <!-- Table -->
 
 <!-- Datepicker -->
+
+<!-- MaterialButton (completed) -->
+
+<!-- SkeletonComponent (completed) -->
