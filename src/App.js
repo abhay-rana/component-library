@@ -24,6 +24,10 @@ import ChipTest from 'screens/chip-test';
 const App = () => {
     return (
         <>
+            {/* <TabTest/> */}
+            {/* <ImageTest/> */}
+            {/* <TooltipTest /> */}
+            {/* <RippleTest /> */}
             {/* <FloatingLabel /> */}
             {/* <NormalLabel />  */}
             {/* <ButtonTest /> */}
@@ -32,14 +36,12 @@ const App = () => {
             {/* <RadioTest /> */}
             {/* <CheckboxTest /> */}
             {/* <SwitchTest /> */}
-            {/* <RippleTest /> */}
             {/* <ModalTest /> */}
             {/* <NewButtonTest /> */}
             {/* <FaqAccordion /> */}
             {/* <SelectTest /> */}
             {/* <DividerTest /> */}
             {/* <IconTest /> */}
-            {/* <TooltipTest /> */}
             {/* <SkeletonTest /> */}
             <ChipTest />
         </>

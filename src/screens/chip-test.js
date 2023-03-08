@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Chip from 'components/chip';
+import { AcademicCapIcon, BellAlertIcon } from '@heroicons/react/24/solid';
 
 const ChipTest = () => {
     return (
@@ -27,6 +28,35 @@ const ChipTest = () => {
                         <Chip
                             label="Clickable"
                             onClick={() => console.log('clicked')}
+                        />
+                        <Chip
+                            label="left icon"
+                            onClick={() => console.log('chip is clicked')}
+                            iconOnClick={() => console.log('icon is clicked')}
+                            icon_left={<BellAlertIcon />}
+                        />
+                        <Chip
+                            label="Icons"
+                            onClick={() => console.log('chip is clicked')}
+                            iconOnClick={() => console.log('icon is clicked')}
+                            icon_left={
+                                <BellAlertIcon className="text-pink-600" />
+                            }
+                            icon_right={
+                                <AcademicCapIcon className="text-red-400" />
+                            }
+                        />
+                        <Chip
+                            label="Icons"
+                            onClick={() => console.log('chip is clicked')}
+                            iconOnClick={() => console.log('icon is clicked')}
+                            icon_left={
+                                <BellAlertIcon className="text-pink-600" />
+                            }
+                            icon_right={
+                                <AcademicCapIcon className="text-red-400" />
+                            }
+                            large
                         />
                     </div>
                 </div>
