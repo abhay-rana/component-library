@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Tooltip from "components/tooltip/tooltip";
+import Tooltip from 'components/tooltip/tooltip';
 
 const TooltipTest = () => {
-	const [opened, setOpened] = useState(false);
-	return (
-		<div className="h-full border-2 border-red-600">
-			<Tooltip
+    const [opened, setOpened] = useState(false);
+    return (
+        <div className="h-full border-2 border-red-600 flex justify-center items-center">
+            {/* <Tooltip
 				// on="hover" default
 				// on="click"
 				// customTooltip={<div>Hello this is custom component</div>}
@@ -19,9 +19,29 @@ const TooltipTest = () => {
 				closeDelay={400}
 			>
 				<div className="inline-block border border-black">hello this is tooltip</div>
-			</Tooltip>
-		</div>
-	);
+			</Tooltip> */}
+            <Tooltip className="" text="this is tooltip" position="left">
+                <div className="border border-red-400 w-[200px]">
+                    Tooltip at left
+                </div>
+            </Tooltip>
+            <Tooltip className="" text="this is tooltip" position="top">
+                <div className="border border-red-400 w-[200px]">
+                    Tooltip at top
+                </div>
+            </Tooltip>
+            <Tooltip className="" text="this is tooltip" position="right">
+                <div className="border border-red-400 w-[200px] relative top-[-50px]">
+                    Tooltip at right
+                </div>
+            </Tooltip>
+            <Tooltip className="" text="this is tooltip" position="bottom">
+                <div className="border border-red-400 w-[200px] ">
+                    Tooltip at bottom
+                </div>
+            </Tooltip>
+        </div>
+    );
 };
 
 export default TooltipTest;
