@@ -53,8 +53,10 @@ const Tooltip = memo(({ children, ...props }) => {
 const DefaultTooltip = ({
     position = 'top',
     color,
-    offset = 10,
+    offset = 15,
     id,
+    text,
+    arrow = true,
     ...props
 }) => {
     const [positions, setPosition] = useState({});
@@ -77,28 +79,31 @@ const DefaultTooltip = ({
                     left: positions.left || 0,
                     top: positions.top || 0,
                 }}
-                className="border border-pink-600 flex items-center justify-center"
+                className="border border-pink-600 p-1 after:left-1/2 after:w-2 after:h-2 after:bg-black after:absolute after:-bottom-1 after:rotate-45 bg-red-200"
             >
-                <div>{props.text}</div>
+                <div>{text}</div>
             </div>
         </>
     );
 };
 
 const _renderTooltipAtPosition = (id, position, offset, setPosition) => {
-    // const position = [];
     let tooltip_render_coord = {};
     const trigger_comp_coordinates = JSON.parse(
         JSON.stringify(document.getElementById(id).getBoundingClientRect())
     );
+    // top && left is zero as they are initialized with zero
     const tooltip_comp_coordinated = document
         .getElementById('tooltip-portals')
         .getBoundingClientRect();
-
-    console.log({ trigger_comp_coordinates });
-    console.log({ tooltip_comp_coordinated });
-
-    if (position === 'top') {
+    // render the tooltip from the valid_position of the array
+    const valid_render_pos = _checkTooltipPosition(
+        tooltip_comp_coordinated,
+        trigger_comp_coordinates,
+        offset,
+        position
+    );
+    if (valid_render_pos === 'top') {
         tooltip_render_coord = {
             left:
                 trigger_comp_coordinates.left +
@@ -109,7 +114,7 @@ const _renderTooltipAtPosition = (id, position, offset, setPosition) => {
                 trigger_comp_coordinates.height -
                 offset,
         };
-    } else if (position === 'right') {
+    } else if (valid_render_pos === 'right') {
         tooltip_render_coord = {
             left:
                 trigger_comp_coordinates.left +
@@ -120,7 +125,7 @@ const _renderTooltipAtPosition = (id, position, offset, setPosition) => {
                 trigger_comp_coordinates.height / 2 -
                 tooltip_comp_coordinated.height / 2,
         };
-    } else if (position === 'left') {
+    } else if (valid_render_pos === 'left') {
         tooltip_render_coord = {
             left:
                 trigger_comp_coordinates.left -
@@ -131,7 +136,7 @@ const _renderTooltipAtPosition = (id, position, offset, setPosition) => {
                 trigger_comp_coordinates.height / 2 -
                 tooltip_comp_coordinated.height / 2,
         };
-    } else if (position === 'bottom') {
+    } else if (valid_render_pos === 'bottom') {
         tooltip_render_coord = {
             left:
                 trigger_comp_coordinates.left +
@@ -144,11 +149,32 @@ const _renderTooltipAtPosition = (id, position, offset, setPosition) => {
         };
     }
 
-    // setPosition({
-    //     ...trigger_comp_coordinates,
-    //     tooltip_height: tooltip_comp_coordinated.height,
-    // });
     setPosition(tooltip_render_coord);
+};
+
+const _checkTooltipPosition = (tooltip, trigger, offset, position) => {
+    const valid_pos = [];
+    if (tooltip.height + offset < trigger.top) {
+        valid_pos.push('top');
+    }
+    if (
+        document.documentElement.clientWidth >
+        trigger.right + offset + tooltip.width
+    ) {
+        valid_pos.push('right');
+    }
+    if (trigger.left > tooltip.width + offset) {
+        valid_pos.push('left');
+    }
+    if (
+        trigger.bottom + tooltip.height + offset <
+        document.documentElement.clientHeight
+    ) {
+        valid_pos.push('bottom');
+    }
+    console.log(valid_pos);
+    if (!valid_pos.includes(position)) return valid_pos[0];
+    else return position;
 };
 
 // render this component as a custom tooltip
