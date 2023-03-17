@@ -49,6 +49,13 @@ const Tooltip = memo(({ children, ...props }) => {
     //
 });
 
+const bubble_class = {
+    top: 'left-1/2 -bottom-1 -translate-x-1/2',
+    left: '',
+    right: '',
+    bottom: '',
+};
+
 // render this component as a tooltip
 const DefaultTooltip = ({
     position = 'top',
@@ -59,7 +66,14 @@ const DefaultTooltip = ({
     arrow = true,
     ...props
 }) => {
-    const [positions, setPosition] = useState({});
+    const [positions, setPosition] = useState({
+        top: '',
+        left: '',
+        tooltip_position: '',
+    });
+
+    const tooltip_bubble_class = bubble_class[positions.tooltip_position];
+
     useEffect(() => {
         _renderTooltipAtPosition(id, position, offset, setPosition);
     }, []);
@@ -79,9 +93,15 @@ const DefaultTooltip = ({
                     left: positions.left || 0,
                     top: positions.top || 0,
                 }}
-                className="border border-pink-600 p-1 after:left-1/2 after:w-2 after:h-2 after:bg-black after:absolute after:-bottom-1 after:rotate-45 bg-red-200"
             >
-                <div>{text}</div>
+                {/* for the tooltip bubble */}
+                <div
+                    className={`absolute w-3 h-4 bg-black ${tooltip_bubble_class} rotate-45`}
+                ></div>
+                {/* for the tooltip text */}
+                <div className="relative border border-black p-1 bg-red-400">
+                    {text}
+                </div>
             </div>
         </>
     );
@@ -149,7 +169,10 @@ const _renderTooltipAtPosition = (id, position, offset, setPosition) => {
         };
     }
 
-    setPosition(tooltip_render_coord);
+    setPosition({
+        ...tooltip_render_coord,
+        tooltip_position: valid_render_pos,
+    });
 };
 
 const _checkTooltipPosition = (tooltip, trigger, offset, position) => {

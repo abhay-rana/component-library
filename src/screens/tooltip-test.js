@@ -30,7 +30,7 @@ const TooltipTest = () => {
                     Tooltip at top
                 </div>
             </Tooltip>
-            <Tooltip className="" text="this is tooltip" position="top">
+            <Tooltip className="" text="this is tooltip" position="right">
                 <div className="border border-red-400 w-[200px] relative top-[-150px]">
                     Tooltip at right
                 </div>
