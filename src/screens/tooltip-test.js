@@ -21,7 +21,7 @@ const TooltipTest = () => {
 				<div className="inline-block border border-black">hello this is tooltip</div>
 			</Tooltip> */}
             <Tooltip className="" text="this is tooltip" position="left">
-                <div className="border border-red-400 w-[200px] relative left-[-400px]">
+                <div className="border border-red-400 w-[200px] relative">
                     Tooltip at left
                 </div>
             </Tooltip>

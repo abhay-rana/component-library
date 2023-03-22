@@ -50,10 +50,10 @@ const Tooltip = memo(({ children, ...props }) => {
 });
 
 const bubble_class = {
-    top: 'left-1/2 -bottom-1 -translate-x-1/2',
-    left: '',
-    right: '',
-    bottom: '',
+    top: 'left-1/2 -translate-x-1/2 bottom-0 rotate-45',
+    left: 'translate-y-1/2 right-0 rotate-45',
+    right: 'translate-y-1/2 rotate-45',
+    bottom: 'left-1/2 rotate-45 -translate-x-1/2',
 };
 
 // render this component as a tooltip
@@ -96,7 +96,7 @@ const DefaultTooltip = ({
             >
                 {/* for the tooltip bubble */}
                 <div
-                    className={`absolute w-3 h-4 bg-black ${tooltip_bubble_class} rotate-45`}
+                    className={`absolute w-4 h-4 bg-black ${tooltip_bubble_class}`}
                 ></div>
                 {/* for the tooltip text */}
                 <div className="relative border border-black p-1 bg-red-400">
