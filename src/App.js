@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import Routes from 'routes';
+
 // import ButtonTest from 'screens/button-test';
 // import NormalLabel from 'screens/normal-label';
 // import FloatingLabel from 'screens/floating-label-input';
@@ -14,19 +16,20 @@ import React, { useEffect, useState } from 'react';
 // import SelectTest from 'screens/select-test';
 // import DividerTest from 'screens/divider-test';
 // import IconTest from 'screens/icon-test';
-import TooltipTest from 'screens/tooltip-test';
+// import TooltipTest from 'screens/tooltip-test';
 // import TestMod from 'testing/test-mod';
 // import Transition from 'components/common/transition';
 // import NewButtonTest from 'screens/new-button-test';
 // import SkeletonTest from 'screens/skeleton-test';
 // import ChipTest from 'screens/chip-test';
+// import TabTest from 'screens/tab-test';
 
 const App = () => {
     return (
         <>
-            {/* <TabTest/> */}
+            {/* <TabTest /> */}
             {/* <ImageTest/> */}
-            <TooltipTest />
+            {/* <TooltipTest /> */}
             {/* <RippleTest /> */}
             {/* <FloatingLabel /> */}
             {/* <NormalLabel />  */}
@@ -44,6 +47,7 @@ const App = () => {
             {/* <IconTest /> */}
             {/* <SkeletonTest /> */}
             {/* <ChipTest /> */}
+            <Routes />
         </>
     );
 };
