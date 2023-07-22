@@ -4,6 +4,7 @@ import SpinnerTest from 'screens/spinner-test';
 import TooltipTest from 'screens/tooltip-test';
 import TabTest from 'screens/tab-test';
 import ErrorPage from 'screens/error/404';
+import RippleTest from 'screens/ripple-test';
 
 const Routes = () => {
     const [location, setLocation] = useLocation();
@@ -21,6 +22,7 @@ const Routes = () => {
             <Route path="/" component={SpinnerTest} />
             <Route path="/spinner" component={SpinnerTest} />
             <Route path="/tooltip" component={TooltipTest} />
+            <Route path="/mat-button" component={RippleTest} />
             <Route path="/tab/:tabs?">
                 {(params) => <TabTest params={_getTabsParams(params.tabs)} />}
             </Route>

@@ -10,7 +10,7 @@ import Routes from 'routes';
 // import RadioTest from 'screens/radio-test';
 // import CheckboxTest from 'screens/checkbox-test';
 // import SwitchTest from 'screens/switch-test';
-// import RippleTest from 'screens/ripple-test';
+import RippleTest from 'screens/ripple-test';
 // import ModalTest from 'screens/modal-test';
 // import FaqAccordion from 'screens/faq-accordion';
 // import SelectTest from 'screens/select-test';
@@ -27,6 +27,7 @@ import Routes from 'routes';
 const App = () => {
     return (
         <>
+            <Routes />
             {/* <TabTest /> */}
             {/* <ImageTest/> */}
             {/* <TooltipTest /> */}
@@ -47,7 +48,6 @@ const App = () => {
             {/* <IconTest /> */}
             {/* <SkeletonTest /> */}
             {/* <ChipTest /> */}
-            <Routes />
         </>
     );
 };

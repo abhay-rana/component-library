@@ -1,15 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-import "./styles/global.css";
+import './styles/global.css';
 
-import ModalProvider from "./provider/portal-provider";
+import ModalProvider from './provider/portal-provider';
 
-import App from "./app";
+import App from './app';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<ModalProvider>
-		<App />
-	</ModalProvider>
+    <ModalProvider>
+        <App />
+    </ModalProvider>
 );

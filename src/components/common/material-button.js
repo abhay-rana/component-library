@@ -32,6 +32,7 @@ const MaterialButton = (props, ref) => {
         children,
         label = '',
         onClick,
+        wait_ripple = true,
     } = props;
 
     // Apply the styling on the basis of the props
@@ -89,6 +90,14 @@ const MaterialButton = (props, ref) => {
 
     // end
 
+    const rippleOnClick = () => {
+        if (wait_ripple) {
+            onClick && setTimeout(onClick, 200);
+        } else {
+            onClick();
+        }
+    };
+
     return (
         <RippleEffect
             icon_button={!!icon_button}
@@ -109,7 +118,8 @@ const MaterialButton = (props, ref) => {
                             `flex flex-1 flex-row items-center justify-center gap-2`,
                             `${loader || disabled ? 'pointer-events-none' : ''}`
                         )}
-                        onClick={onClick}
+                        //* so that user can see the rippling effect
+                        onClick={rippleOnClick}
                     >
                         {icon_left ? (
                             <div className="h-4 w-4">{icon_left}</div>
@@ -128,7 +138,7 @@ const MaterialButton = (props, ref) => {
                         `${icon_btn_class}`
                     )}
                 >
-                    {icon_button}
+                    {children}
                 </div>
             )}
         </RippleEffect>

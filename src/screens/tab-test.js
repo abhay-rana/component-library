@@ -3,15 +3,18 @@ import { useLocation } from 'wouter';
 
 const TabTest = ({ params }) => {
     const [location, setLocation] = useLocation();
+    const [state, setState] = useState();
+    const [current_tab] = useTab();
     console.log(location, params);
+
     return (
         <>
-            <div className="flex flex-col h-screen">
-                <div className="flex items-center justify-center border border-black gap-1">
+            <div className="flex h-screen flex-col">
+                <div className="flex items-center justify-center gap-1 border border-black">
                     Tab Test Component
                 </div>
-                <div className="flex-1 flex items-center justify-center border-4 border-red-700">
-                    <div className="flex flex-row border border-black gap-3 p-3">
+                <div className="flex flex-1 items-center justify-center border-4 border-red-700">
+                    <div className="flex flex-row gap-3 border border-black p-3">
                         <div onClick={() => setLocation('/tab/tab1')}>Tab1</div>
                         <div onClick={() => setLocation('/tab/comment')}>
                             Tab2
@@ -23,5 +26,10 @@ const TabTest = ({ params }) => {
         </>
     );
 };
+
+/*
+there is a tab so so can change the tab according to it 
+
+  */
 
 export default TabTest;
